@@ -1,25 +1,15 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import jujutsu from './jujutsu.jpg'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-         Welcome to AniFlix!!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          AniFlix
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  render() {
+    return (
+      <div className="App">
+        <h1> Welcome to AniFlix</h1>
+        <img src={jujutsu} alt='Jujutsu'/>
+      </div>
+    );
+  }
 }
-
 export default App;
