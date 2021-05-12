@@ -8,6 +8,12 @@ class App extends Component{
       <div className="App">
         <h1> Welcome to AniFlix</h1>
         <img src={jujutsu} alt='Jujutsu'/>
+        <br /><br /><br />
+        <div>
+          <div>
+            
+          </div>
+        </div>
       </div>
     );
   }
