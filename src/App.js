@@ -10,9 +10,9 @@ class App extends Component{
         <img src={jujutsu} alt='Jujutsu'/>
         <br /><br /><br />
         <div>
-          <div>
-            test
-          </div>
+          <div> AniFlex</div>
+          <div>AniFlex</div>
+          <div>AniFlex</div>
         </div>
       </div>
     );
