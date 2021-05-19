@@ -9,10 +9,15 @@ class App extends Component{
         <h1> Welcome to AniFlix</h1>
         <img src={jujutsu} alt='Jujutsu'/>
         <br /><br /><br />
-        <div>
-          <div> AniFlex</div>
-          <div>AniFlex</div>
-          <div>AniFlex</div>
+        <div className='container'>
+          <div className='item'>One Piece</div>
+          <div className='item'>Fire Force</div>
+          <div className='item'>Jujutsu Kaisen</div>
+        </div>
+        <div className='container'>
+          <div className='item'>My Hero Academia</div>
+          <div className='item'>Attack on Titian</div>
+          <div className='item'>OverLord</div>
         </div>
       </div>
     );
