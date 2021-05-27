@@ -3,7 +3,7 @@
 }
 
 img {
- width: 50%;
+ width: 100%;
 }
 
 .container {
@@ -12,4 +12,5 @@ img {
 
 .item {
   flex: 1;
+  padding: 30px;
 }
