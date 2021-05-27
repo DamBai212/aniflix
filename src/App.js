@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import jujutsu from './jujutsu.jpg'
+import jujutsu from './images/jujutsu.jpg'
 import './App.css';
 
 class App extends Component{
