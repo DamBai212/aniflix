@@ -10,9 +10,28 @@ img {
   display: flex;
 }
 
+/* i want the element to hover */
 .item {
   flex: 1;
   padding: 30px;
+  border: 1px solid green;
+  position: relative;
+}
+
+/* to stop the flickering i changed the position of the overlay */
+.overlay {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: deepskyblue;
+  opacity: .5;
+}
+
+/* i want the browser to find each item and when the user hover each item find the overlay and display it */
+.item:hover .overlay {
+  display: block;
 }
 
 @media only screen and (max-width: 600px) {
