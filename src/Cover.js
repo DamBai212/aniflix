@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Cover(props) {
+export default function Cover(props) {
     return (
       <div className='item'>
         <img src={props.cover} alt={`${props.name} logo`} />
@@ -11,4 +11,4 @@ function Cover(props) {
     )
   }
 
-  export default Cover
+  
