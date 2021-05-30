@@ -12,7 +12,8 @@ class App extends Component{
           <h1> Welcome to AniFlix</h1>
           <br /><br /><br />
           <Route exact path= '/' component={Gallery} />
-          <Route exact path='/details' component={Details} />
+          {/* made details url dynamic */}
+          <Route exact path='/:details' component={Details} />
         </div>
       </Router>
       

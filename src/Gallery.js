@@ -11,14 +11,14 @@ export default function Gallery() {
     return (
         <div>
             <div className='container'>
-               <Cover name='Jujutsu' cover={jujutsu} />
-               <Cover name='One Piece' cover={onepiece} />
-               <Cover name='Fire Force' cover={fireforce} />
+               <Cover id='jujutsu' name='Jujutsu' cover={jujutsu} />
+               <Cover id='onepiece' name='One Piece' cover={onepiece} />
+               <Cover id='fireforce' name='Fire Force' cover={fireforce} />
             </div>
             <div className='container'>
-               <Cover name='Naruto' cover={naruto} />
-               <Cover name='My Hero Academia' cover={myheroacademia} />
-               <Cover name='Attack on Titan' cover={attackontitan} />
+               <Cover id='naruto' name='Naruto' cover={naruto} />
+               <Cover id='myheroacademia' name='My Hero Academia' cover={myheroacademia} />
+               <Cover id='attackontitan' name='Attack on Titan' cover={attackontitan} />
             </div>
         </div>
         
