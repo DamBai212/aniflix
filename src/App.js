@@ -13,7 +13,7 @@ class App extends Component{
           <br /><br /><br />
           <Route exact path= '/' component={Gallery} />
           {/* made details url dynamic */}
-          <Route exact path='/:details' component={Details} />
+          <Route exact path='/:coverId' component={Details} />
         </div>
       </Router>
       
