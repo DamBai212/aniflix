@@ -14,8 +14,6 @@ export default function Gallery() {
                <Cover id='jujutsu' name='Jujutsu' cover={jujutsu} />
                <Cover id='onepiece' name='One Piece' cover={onepiece} />
                <Cover id='fireforce' name='Fire Force' cover={fireforce} />
-            </div>
-            <div className='container'>
                <Cover id='naruto' name='Naruto' cover={naruto} />
                <Cover id='myheroacademia' name='My Hero Academia' cover={myheroacademia} />
                <Cover id='attackontitan' name='Attack on Titan' cover={attackontitan} />

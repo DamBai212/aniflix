@@ -7,13 +7,17 @@ img {
 }
 
 .container {
-  display: flex;
+  /* display: flex;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /* i want the element to hover */
 /* overflow heading hides the overlay inside of the green box */
 .item {
-  flex: 1;
+  /* flex: 1;
+  flex-basis: 120px; */
   padding: 30px;
   position: relative;
   border: 1px solid green;
@@ -36,11 +40,4 @@ img {
 .item:hover .overlay {
   opacity: .6;
   bottom: 0;
-}
-
-@media only screen and (max-width: 600px) {
-
-  .container {
-    flex-direction: column
-  }
 }
