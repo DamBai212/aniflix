@@ -1,18 +1,18 @@
 import React from 'react'
 import getGallery from './getGallery.js'
-import Cover from './Cover.js';
+import Anime from './Anime.js';
 
 export default function Gallery() {
     return (
         <div>
             <div className='container'>
                {
-                   getGallery().map(cover => (
-                       <Cover
-                       key={cover.id} 
-                       id={cover.id} 
-                       name={cover.name} 
-                       cover={cover.cover}/>
+                   getGallery().map(anime=> (
+                       <Anime
+                       key={anime.id} 
+                       id={anime.id} 
+                       name={anime.name} 
+                       cover={anime.cover}/>
                    ))
                }
             </div>
