@@ -5,6 +5,8 @@ import Anime from './Anime.js';
 export default function Gallery() {
     return (
         <div>
+            <h1> Welcome to AniFlix</h1>
+            <br /><br /><br />
             <div className='container'>
                {
                    getGallery().map(anime=> (

@@ -1,3 +1,17 @@
-.Details {
-    background-color: grey;
+
+
+.Details .content {
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.Details .text {
+    display: grid;
+    padding: 30px;
+}
+
+img.image {
+    padding: 20px;
+    width: 75%;
 }

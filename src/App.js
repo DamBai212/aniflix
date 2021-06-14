@@ -10,8 +10,6 @@ class App extends Component{
     return (
       <Router>
         <div className="App">
-          <h1> Welcome to AniFlix</h1>
-          <br /><br /><br />
             <Switch>
               <Route exact path= '/' component={Gallery} />
               {/* made details url dynamic */}
