@@ -12,7 +12,6 @@ export default function NavBar() {
     const handleClick = () => setClick(!click);
     const closeMoblieMenu = () => setClick(false);
 
-
     return (
         <React.Fragment>
             <nav className='navbar'>
