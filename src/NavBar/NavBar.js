@@ -3,7 +3,7 @@ import Button from './Button.js'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 import Dropdown from './Dropdown.js'
-// import getGallery from '../getGallery.js'
+
 
 export default function NavBar() {
     const [click, setClick] = useState(false);
