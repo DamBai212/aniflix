@@ -2,6 +2,10 @@
   "name": "aniflix",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -18,8 +22,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "prestart": "node scripts/checkNodeVersion.js",
     "start": "react-scripts start",
+    "prebuild": "node scripts/checkNodeVersion.js",
     "build": "react-scripts build",
+    "pretest": "node scripts/checkNodeVersion.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

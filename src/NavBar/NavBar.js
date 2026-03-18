@@ -47,7 +47,7 @@ export default function NavBar() {
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}>
             <Link
-              to="/:animeId"
+              to="/animes"
               className="nav-links"
               onClick={closeMobileMenu}
             >
