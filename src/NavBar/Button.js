@@ -5,7 +5,7 @@ import './Button.css'
 export default function Button() {
     return (
         <div>
-            <Link to='sign-up'>
+            <Link to='/sign-up'>
                 <button className='btn'>
                     Sign up
                 </button>

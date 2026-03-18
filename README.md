@@ -6,6 +6,10 @@
 
 In the project directory, you can run:
 
+### Node version
+
+Use Node `14.15.0` and npm `6.x` for this project. The current CRA 4 toolchain builds successfully with that runtime.
+
 ### `yarn start` or `heroku open`
 
 Runs the app in the development mode.\
