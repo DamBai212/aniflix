@@ -1,19 +1,23 @@
 .dropdown-menu {
-    background: red;
+    background: rgba(9, 13, 25, 0.98);
     width: 200px;
     position: absolute;
     top: 80px;
     list-style: none;
     text-align: start;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
   }
   
   .dropdown-menu li {
-    background: #1888ff;
+    background: transparent;
     cursor: pointer;
   }
   
   .dropdown-menu li:hover {
-    background: #5cabff;
+    background: rgba(255, 143, 92, 0.12);
   }
   
   .dropdown-menu.clicked {

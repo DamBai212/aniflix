@@ -1,5 +1,10 @@
 .navbar {
-    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(5, 8, 18, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     height: 80px;
     display: flex;
     justify-content: center;
@@ -13,7 +18,9 @@
     margin-left: 20px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.12em;
   }
   
   .fa-firstdraft {
@@ -42,12 +49,13 @@
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    border-radius: 999px;
+    transition: background-color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
   }
   
   .nav-links:hover {
-    background-color: #1888ff;
-    border-radius: 4px;
-    transition: all 0.2s ease-out;
+    background: rgba(255, 143, 92, 0.16);
+    box-shadow: inset 0 0 0 1px rgba(255, 214, 165, 0.22);
   }
   
   .fa-bars {
@@ -80,7 +88,7 @@
     }
   
     .nav-menu.active {
-      background: #242222;
+      background: rgba(9, 13, 25, 0.98);
       left: 0;
       opacity: 1;
       transition: all 0.5s ease;
@@ -95,7 +103,7 @@
     }
   
     .nav-links:hover {
-      background-color: #1888ff;
+      background: rgba(255, 143, 92, 0.16);
       border-radius: 0;
     }
   
@@ -128,15 +136,15 @@
       margin: 2rem auto;
       border-radius: 4px;
       width: 80%;
-      background: #1888ff;
+      background: linear-gradient(135deg, #ff8f5c 0%, #f5c86a 100%);
       text-decoration: none;
-      color: #fff;
+      color: #140f14;
       font-size: 1.5rem;
     }
   
     .nav-links-mobile:hover {
       background: #fff;
-      color: #1888ff;
+      color: #140f14;
       transition: 250ms;
     }
   
