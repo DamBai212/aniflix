@@ -1,4 +1,9 @@
 import jujutsuCover from './images/jujutsu.jpg';
+import onePieceCover from './images/onepiece.jpg';
+import fireForceCover from './images/fireforce.jpg';
+import narutoCover from './images/naruto.jpg';
+import myHeroAcademiaCover from './images/myheroacademia.jpg';
+import attackOnTitanCover from './images/attackontitian.jpg';
 
 export default function getGallery() {
     return [
@@ -18,7 +23,7 @@ export default function getGallery() {
         {
             id: 'onepiece',
             name: 'One Piece',
-            cover: 'https://via.placeholder.com/400x600/182034/f7edd8?text=One+Piece',
+            cover: onePieceCover,
             cName: 'dropdown-link',
             genre: 'Adventure',
             year: '1999',
@@ -31,7 +36,7 @@ export default function getGallery() {
         {
             id: 'fireforce',
             name: 'Fire Force',
-            cover: 'https://via.placeholder.com/400x600/271522/fce8dc?text=Fire+Force',
+            cover: fireForceCover,
             cName: 'dropdown-link',
             genre: 'Action',
             year: '2019',
@@ -44,7 +49,7 @@ export default function getGallery() {
         {
             id: 'naruto',
             name: 'Naruto',
-            cover: 'https://via.placeholder.com/400x600/2c1c17/fce7cf?text=Naruto',
+            cover: narutoCover,
             cName: 'dropdown-link',
             genre: 'Shonen',
             year: '2007',
@@ -53,11 +58,11 @@ export default function getGallery() {
             accent: '#f4a261',
             accentSoft: 'rgba(244, 162, 97, 0.28)',
             synopsis: 'Naruto Uzumaki wants to be the best ninja in the land. He has done well so far, but with the looming danger posed by the mysterious Akatsuki organization, Naruto knows he must train harder than ever and leaves his village for intense exercises that will push him to his limits. '
-        }, 
+        },
         {
             id: 'myheroacademia',
             name: 'My Hero Academia',
-            cover: 'https://via.placeholder.com/400x600/13221d/f2f1d4?text=My+Hero+Academia',
+            cover: myHeroAcademiaCover,
             cName: 'dropdown-link',
             genre: 'Superhero',
             year: '2016',
@@ -70,7 +75,7 @@ export default function getGallery() {
         {
             id: 'attackontitan',
             name: 'Attack on Titan',
-            cover: 'https://via.placeholder.com/400x600/1f1416/f4ebe2?text=Attack+on+Titan',
+            cover: attackOnTitanCover,
             cName: 'dropdown-link',
             genre: 'Thriller',
             year: '2013',
