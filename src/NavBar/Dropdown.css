@@ -1,5 +1,5 @@
 .dropdown-menu {
-    background: rgba(9, 13, 25, 0.98);
+    background: linear-gradient(180deg, rgba(8, 12, 24, 0.98) 0%, rgba(5, 8, 18, 0.98) 100%);
     width: 200px;
     position: absolute;
     top: 80px;
@@ -8,7 +8,7 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.34);
   }
   
   .dropdown-menu li {
@@ -17,7 +17,7 @@
   }
   
   .dropdown-menu li:hover {
-    background: rgba(255, 143, 92, 0.12);
+    background: rgba(255, 143, 92, 0.14);
   }
   
   .dropdown-menu.clicked {
@@ -29,7 +29,7 @@
     height: 100%;
     width: 100%;
     text-decoration: none;
-    color: #fff;
+    color: #fff5e8;
     padding: 16px;
   }
   
