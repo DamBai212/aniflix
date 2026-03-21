@@ -1,77 +1,89 @@
-import React, { useState } from "react";
-import Button from "./Button.js";
-import { Link } from "react-router-dom";
-import "./NavBar.css";
-import Dropdown from "./Dropdown.js";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Button from './Button.js';
+import Dropdown from './Dropdown.js';
+import './NavBar.css';
 
 export default function NavBar() {
-  const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const toggleMenu = () => {
+    setIsMenuOpen((currentValue) => !currentValue);
+  };
 
-  const onMouseEnter = () => {
-      if(window.innerWidth < 960) {
-          setDropdown(false)
-      } else {
-          setDropdown(true)
-      }
-  }
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+  };
 
-  const onMouseLeave = () => {
-    if(window.innerWidth < 960) {
-        setDropdown(false)
-    } else {
-        setDropdown(false)
-    }
-}
+  const handleDropdownEnter = () => {
+    setIsDropdownOpen(window.innerWidth >= 960);
+  };
+
+  const handleDropdownLeave = () => {
+    setIsDropdownOpen(false);
+  };
 
   return (
-    <React.Fragment>
-      <nav className="navbar">
-        <Link to="/" className="navbar-logo">
+    <nav className='navbar'>
+      <div className='navbar-shell'>
+        <Link to='/' className='navbar-logo'>
           AniFlix
         </Link>
-        <div className="menu-icon" onClick={handleClick}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"} />
-        </div>
-        {/* line 24 drags out the menu with the shows listed */}
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
-          <li className="nav-item">
-            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
+
+        <button
+          type='button'
+          className='menu-icon'
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        >
+          <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'} />
+        </button>
+
+        <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
+          <li className='nav-item'>
+            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
               Home
             </Link>
           </li>
-          <li className="nav-item"
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}>
+          <li
+            className='nav-item'
+            onMouseEnter={handleDropdownEnter}
+            onMouseLeave={handleDropdownLeave}
+          >
             <Link
-              to="/animes"
-              className="nav-links"
+              to='/animes'
+              className='nav-links'
               onClick={closeMobileMenu}
             >
-              Animes <i className="fas fa-caret-down" />
+              Animes <i className='fas fa-caret-down' />
             </Link>
-            {dropdown && <Dropdown />}
+            {isDropdownOpen && <Dropdown />}
           </li>
-          <li className="nav-item">
+          <li className='nav-item'>
             <Link
-              to="/contacts"
-              className="nav-links"
+              to='/contacts'
+              className='nav-links'
               onClick={closeMobileMenu}
             >
               Contacts
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/sign-up" className="nav-links" onClick={closeMobileMenu}>
+          <li className='nav-item'>
+            <Link
+              to='/sign-up'
+              className='nav-links'
+              onClick={closeMobileMenu}
+            >
               Sign up
             </Link>
           </li>
         </ul>
-        <Button />
-      </nav>
-    </React.Fragment>
+
+        <div className='navbar-cta'>
+          <Button />
+        </div>
+      </div>
+    </nav>
   );
 }
