@@ -78,34 +78,39 @@ export default function Gallery() {
         >
           <div className='featured-carousel-topbar'>
             <span className='featured-carousel-label'>Featured Picks</span>
-            <div className='featured-carousel-controls'>
+            <span className='featured-carousel-counter'>
+              {String(currentIndex + 1).padStart(2, '0')} / {String(featuredCount).padStart(2, '0')}
+            </span>
+          </div>
+
+          <div key={featuredAnime.id} className='featured-carousel-stage' aria-live='polite'>
+            <div className='featured-carousel-media'>
               <button
                 type='button'
-                className='featured-carousel-control'
+                className='featured-carousel-control featured-carousel-control-prev'
                 onClick={handlePrev}
                 aria-label='Show previous featured pick'
                 disabled={featuredCount <= 1}
               >
                 <span aria-hidden='true'>&lsaquo;</span>
               </button>
+
+              <div className='featured-carousel-poster'>
+                <img
+                  src={featuredAnime.cover}
+                  alt={`${featuredAnime.name} featured art`}
+                />
+              </div>
+
               <button
                 type='button'
-                className='featured-carousel-control'
+                className='featured-carousel-control featured-carousel-control-next'
                 onClick={handleNext}
                 aria-label='Show next featured pick'
                 disabled={featuredCount <= 1}
               >
                 <span aria-hidden='true'>&rsaquo;</span>
               </button>
-            </div>
-          </div>
-
-          <div key={featuredAnime.id} className='featured-carousel-stage' aria-live='polite'>
-            <div className='featured-carousel-poster'>
-              <img
-                src={featuredAnime.cover}
-                alt={`${featuredAnime.name} featured art`}
-              />
             </div>
             <div className='featured-carousel-copy'>
               <div className='featured-carousel-meta'>
@@ -130,9 +135,6 @@ export default function Gallery() {
                 />
               ))}
             </div>
-            <span className='featured-carousel-position'>
-              {String(currentIndex + 1).padStart(2, '0')} / {String(featuredCount).padStart(2, '0')}
-            </span>
           </div>
         </div>
       </section>

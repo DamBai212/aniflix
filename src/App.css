@@ -258,9 +258,9 @@ a {
 }
 
 .featured-carousel {
-  padding: 1.35rem 1.35rem 1.5rem;
+  padding: 1.4rem;
   text-align: left;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
 .featured-carousel-topbar,
@@ -275,45 +275,6 @@ a {
 
 .featured-carousel-topbar {
   margin-bottom: 1rem;
-}
-
-.featured-carousel-controls {
-  display: flex;
-  gap: 0.65rem;
-}
-
-.featured-carousel-control {
-  width: 2.65rem;
-  height: 2.65rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  background: rgba(7, 11, 22, 0.78);
-  color: var(--text-primary);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
-  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
-}
-
-.featured-carousel-control:hover,
-.featured-carousel-control:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-.featured-carousel-control:disabled {
-  opacity: 0.45;
-  cursor: default;
-  box-shadow: none;
-  transform: none;
-}
-
-.featured-carousel-control span {
-  font-size: 1.45rem;
-  line-height: 1;
 }
 
 .featured-carousel::before {
@@ -344,21 +305,34 @@ a {
   text-transform: uppercase;
 }
 
+.featured-carousel-counter {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
 .featured-carousel-stage {
   position: relative;
   z-index: 1;
-  animation: featured-carousel-enter 0.42s ease;
+  display: grid;
+  gap: 1rem;
+  animation: featured-carousel-enter 0.36s ease;
+}
+
+.featured-carousel-media {
+  position: relative;
+  padding: 0 2.75rem;
 }
 
 .featured-carousel-poster {
   position: relative;
-  z-index: 1;
   overflow: hidden;
   aspect-ratio: 2 / 3;
-  margin-bottom: 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  box-shadow: var(--shadow-poster);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.34);
 }
 
 .featured-carousel-poster::after {
@@ -374,13 +348,14 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.02);
-  transition: transform 0.35s ease;
+  transform: scale(1.03);
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .featured-carousel:hover .featured-carousel-poster img,
 .featured-carousel:focus-within .featured-carousel-poster img {
-  transform: scale(1.06);
+  transform: scale(1.07);
+  filter: saturate(1.05);
 }
 
 .featured-carousel-copy,
@@ -388,6 +363,15 @@ a {
 .content-link {
   position: relative;
   z-index: 1;
+}
+
+.featured-carousel-copy {
+  transition: transform 0.24s ease, opacity 0.24s ease;
+}
+
+.featured-carousel:hover .featured-carousel-copy,
+.featured-carousel:focus-within .featured-carousel-copy {
+  transform: translateY(-2px);
 }
 
 .featured-carousel-meta,
@@ -430,7 +414,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-decoration: none;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition: color 0.24s ease, transform 0.24s ease;
 }
 
 .featured-carousel-link {
@@ -438,7 +422,8 @@ a {
 }
 
 .featured-carousel-footer {
-  margin-top: 1.2rem;
+  margin-top: 1.15rem;
+  justify-content: center;
 }
 
 .featured-carousel-indicators {
@@ -453,7 +438,7 @@ a {
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.18);
-  transition: width 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  transition: width 0.24s ease, background 0.24s ease, transform 0.24s ease;
 }
 
 .featured-carousel-indicator.is-active {
@@ -462,20 +447,60 @@ a {
   border-color: transparent;
 }
 
-.featured-carousel-position {
-  color: var(--text-soft);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
 .featured-carousel-link:hover,
 .featured-carousel-link:focus-visible,
 .content-link:hover,
 .content-link:focus-visible {
   color: #ffffff;
   transform: translateX(2px);
+}
+
+.featured-carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(7, 11, 22, 0.78);
+  color: var(--text-primary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+  opacity: 0.92;
+  transform: translateY(-50%);
+  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+}
+
+.featured-carousel-control span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.featured-carousel-control-prev {
+  left: 0;
+}
+
+.featured-carousel-control-next {
+  right: 0;
+}
+
+.featured-carousel-control:hover,
+.featured-carousel-control:focus-visible {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.featured-carousel-control:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: none;
+  transform: translateY(-50%);
 }
 
 .gallery-shell {
@@ -723,7 +748,7 @@ a {
 @keyframes featured-carousel-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
 
   to {
@@ -762,14 +787,21 @@ a {
     align-items: start;
     gap: 0.9rem;
   }
+
+  .featured-carousel-copy h2 {
+    font-size: 2.35rem;
+  }
 }
 
 @media (max-width: 720px) {
   .showcase-panel,
-  .featured-carousel,
   .gallery-shell,
   .content-panel {
     padding: 1.45rem;
+  }
+
+  .featured-carousel {
+    padding: 1.25rem;
   }
 
   .showcase h1 {
@@ -778,17 +810,25 @@ a {
 
   .featured-carousel-copy h2,
   .section-heading h2 {
-    font-size: 2.25rem;
+    font-size: 2.15rem;
   }
 
-  .featured-carousel-topbar,
-  .featured-carousel-footer {
-    gap: 0.75rem;
+  .featured-carousel-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .featured-carousel-counter {
+    letter-spacing: 0.14em;
+  }
+
+  .featured-carousel-media {
+    padding: 0 2.25rem;
   }
 
   .featured-carousel-control {
-    width: 2.35rem;
-    height: 2.35rem;
+    width: 2.45rem;
+    height: 2.45rem;
   }
 
   .content-panel h1 {
@@ -823,6 +863,7 @@ a {
   .overlay,
   .action-button,
   .featured-carousel,
+  .featured-carousel-copy,
   .featured-carousel-poster img,
   .featured-carousel-link,
   .featured-carousel-control,
