@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
 beforeEach(() => {
   window.history.pushState({}, 'Test page', '/');
+  window.innerWidth = 1200;
   Object.defineProperty(window.HTMLElement.prototype, 'scrollTo', {
     configurable: true,
     value: jest.fn()
@@ -52,6 +53,37 @@ test('scrolls the slider when the right button is clicked', () => {
     left: 320,
     behavior: 'smooth'
   });
+});
+
+test('opens the anime dropdown on keyboard focus for desktop users', () => {
+  render(<App />);
+
+  fireEvent.focus(screen.getByRole('link', { name: /animes/i }));
+
+  expect(screen.getByRole('menu')).toBeInTheDocument();
+  expect(screen.getByRole('menuitem', { name: /jujutsu/i })).toBeInTheDocument();
+});
+
+test('toggles the anime dropdown on and off when clicked on desktop', () => {
+  render(<App />);
+
+  userEvent.click(screen.getByRole('link', { name: /animes/i }));
+  expect(screen.getByRole('menu')).toBeInTheDocument();
+
+  userEvent.click(screen.getByRole('link', { name: /animes/i }));
+  expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+});
+
+test('closes the mobile menu when the logo is clicked', () => {
+  window.innerWidth = 500;
+  const { container } = render(<App />);
+
+  userEvent.click(screen.getByRole('button', { name: /open menu/i }));
+  expect(container.querySelector('.nav-menu')).toHaveClass('active');
+
+  userEvent.click(screen.getByRole('link', { name: /aniflix/i }));
+
+  expect(container.querySelector('.nav-menu')).not.toHaveClass('active');
 });
 
 test('renders the sign up page', () => {

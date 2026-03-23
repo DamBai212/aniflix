@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button.js';
 import Dropdown from './Dropdown.js';
@@ -7,6 +7,9 @@ import './NavBar.css';
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownOpenSourceRef = useRef('');
+
+  const supportsDesktopDropdown = () => window.innerWidth >= 960;
 
   const toggleMenu = () => {
     setIsMenuOpen((currentValue) => !currentValue);
@@ -16,18 +19,67 @@ export default function NavBar() {
     setIsMenuOpen(false);
   };
 
-  const handleDropdownEnter = () => {
-    setIsDropdownOpen(window.innerWidth >= 960);
+  const openDropdown = (source) => {
+    if (!supportsDesktopDropdown()) {
+      return;
+    }
+
+    if (isDropdownOpen && dropdownOpenSourceRef.current === 'click' && source !== 'click') {
+      return;
+    }
+
+    dropdownOpenSourceRef.current = source;
+    setIsDropdownOpen(true);
   };
 
-  const handleDropdownLeave = () => {
+  const closeDropdown = () => {
+    dropdownOpenSourceRef.current = '';
     setIsDropdownOpen(false);
+  };
+
+  const handleDropdownMouseDown = (event) => {
+    if (supportsDesktopDropdown()) {
+      event.preventDefault();
+    }
+  };
+
+  const handleDropdownBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      closeDropdown();
+    }
+  };
+
+  const handleDropdownSelect = () => {
+    closeDropdown();
+    closeMobileMenu();
+  };
+
+  const handleDropdownTriggerClick = (event) => {
+    if (!supportsDesktopDropdown()) {
+      handleDropdownSelect();
+      return;
+    }
+
+    event.preventDefault();
+
+    if (!isDropdownOpen) {
+      dropdownOpenSourceRef.current = 'click';
+      setIsDropdownOpen(true);
+      return;
+    }
+
+    if (dropdownOpenSourceRef.current === 'click') {
+      closeDropdown();
+      return;
+    }
+
+    dropdownOpenSourceRef.current = 'click';
   };
 
   return (
     <nav className='navbar'>
       <div className='navbar-shell'>
-        <Link to='/' className='navbar-logo'>
+        <Link to='/' className='navbar-logo' onClick={handleDropdownSelect}>
           AniFlix
         </Link>
 
@@ -48,17 +100,22 @@ export default function NavBar() {
           </li>
           <li
             className='nav-item'
-            onMouseEnter={handleDropdownEnter}
-            onMouseLeave={handleDropdownLeave}
+            onMouseEnter={() => openDropdown('hover')}
+            onMouseLeave={closeDropdown}
+            onFocus={() => openDropdown('focus')}
+            onBlur={handleDropdownBlur}
           >
             <Link
               to='/animes'
               className='nav-links'
-              onClick={closeMobileMenu}
+              onMouseDown={handleDropdownMouseDown}
+              onClick={handleDropdownTriggerClick}
+              aria-haspopup='menu'
+              aria-expanded={isDropdownOpen}
             >
               Animes <i className='fas fa-caret-down' />
             </Link>
-            {isDropdownOpen && <Dropdown />}
+            {isDropdownOpen && <Dropdown onSelect={handleDropdownSelect} />}
           </li>
           <li className='nav-item'>
             <Link
