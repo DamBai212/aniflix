@@ -366,6 +366,12 @@ a {
 }
 
 .featured-carousel-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.featured-carousel-copy {
   transition: transform 0.24s ease, opacity 0.24s ease;
 }
 
@@ -396,11 +402,13 @@ a {
 }
 
 .featured-carousel-copy h2 {
-  margin: 1rem 0 0.55rem;
+  margin: 0;
   font-size: 2.65rem;
+  line-height: 0.96;
 }
 
 .featured-carousel-copy p {
+  margin: 0;
   color: var(--text-soft);
   line-height: 1.75;
 }
@@ -418,7 +426,8 @@ a {
 }
 
 .featured-carousel-link {
-  margin-top: 1.1rem;
+  align-self: flex-start;
+  margin-top: 0.2rem;
 }
 
 .featured-carousel-footer {
