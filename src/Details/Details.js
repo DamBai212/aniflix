@@ -103,10 +103,10 @@ export default function Details(props) {
           </div>
           <p className='details-synopsis'>{selectedAnime.synopsis}</p>
           <div className='details-actions'>
-            <Link to='/animes' className='hero-button hero-button-primary'>
+            <Link to='/animes' className='action-button action-button-primary'>
               Browse more anime
             </Link>
-            <Link to='/' className='hero-button hero-button-secondary'>
+            <Link to='/' className='action-button action-button-secondary'>
               Return home
             </Link>
           </div>
