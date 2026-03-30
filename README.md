@@ -21,11 +21,14 @@ The app currently includes:
 
 ## Running Locally
 
-Use Node `14.15.0` and npm `6.x` for this project.
+This project is pinned to Node `14.15.0` and npm `6.x`.
+
+The repo includes both `.nvmrc` and `.node-version`, so most Node version managers can pick up the correct version automatically.
 
 In the project directory, run:
 
 ```bash
+nvm use
 npm start
 ```
 
