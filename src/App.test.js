@@ -103,3 +103,21 @@ test('renders anime details for a known route', () => {
   expect(screen.getByRole('heading', { name: /jujutsu/i })).toBeInTheDocument();
   expect(screen.getByText(/yuji itadori/i)).toBeInTheDocument();
 });
+
+test('redirects unknown anime ids to the not found page', () => {
+  window.history.pushState({}, 'Unknown anime page', '/bleach');
+
+  render(<App />);
+
+  expect(screen.getByRole('heading', { name: /page not found/i })).toBeInTheDocument();
+  expect(screen.getByText(/does not exist in the aniflix collection/i)).toBeInTheDocument();
+});
+
+test('renders the not found page for unmatched nested routes', () => {
+  window.history.pushState({}, 'Missing nested page', '/missing/path');
+
+  render(<App />);
+
+  expect(screen.getByRole('heading', { name: /page not found/i })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /return to home page/i })).toBeInTheDocument();
+});
