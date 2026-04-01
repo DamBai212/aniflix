@@ -1,23 +1,25 @@
 # AniFlix
 
-AniFlix is a Netflix-inspired anime app built with React, Node.js, and MongoDB. The project is centered around some of my favorite anime series and is meant to capture the feeling of browsing a streaming platform while still reflecting my own taste and style. As the project grows, this README will continue to document the journey of building and improving AniFlix.
+AniFlix is a Netflix-inspired anime discovery app built around a curated set of favorite series. The current experience focuses on cinematic presentation, fast browsing, and polished detail pages that feel closer to a streaming home screen than a plain gallery.
 
 ## Current Experience
 
 The app currently includes:
 
-- A gallery view for browsing anime titles
-- Individual detail pages for each show
-- Basic navigation and routing
-- A foundation for expanding into a fuller streaming-style experience
+- A hero-style landing experience with a rotating featured spotlight
+- A horizontal poster slider for browsing the current collection
+- Individual detail pages with richer metadata, synopsis copy, and recommendations
+- Responsive navigation with desktop dropdown and mobile menu behavior
+- Static content routes for contact and sign-up flows
 
 ## Tech Stack
 
 - React
 - React Router
+- Create React App
+- Plain CSS with custom styling and animations
 - Node.js
-- MongoDB
-- CSS
+- npm
 
 ## Running Locally
 
@@ -34,16 +36,21 @@ npm start
 
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Next Steps For A More Visually Pleasing Gallery
+## Quality Checks
 
-- Give every poster a consistent aspect ratio so the grid feels cleaner and more cinematic
-- Replace the plain border with rounded corners, deeper shadows, and a darker card background
-- Upgrade the hover state with a soft scale effect, a gradient overlay, and clearer title styling
-- Add a hero banner above the gallery to create a stronger first impression
-- Group anime into themed rows or sections instead of showing everything in a single wall of posters
-- Improve spacing and typography so the page feels more polished on both desktop and mobile
-- Use richer cover art and supporting metadata like genre, year, or rating to make each card feel more premium
+```bash
+nvm use
+npm test -- --watchAll=false
+npm run build
+```
+
+## Next Steps
+
+- Move the anime catalog out of hard-coded front-end data and into a real API or CMS-backed source
+- Expand the browsing experience with genre rows, filtering, and search
+- Add more route, accessibility, and interaction coverage as the UI grows
+- Continue refining the streaming aesthetic with richer artwork and collection depth
 
 ## Project Direction
 
-The next stage of AniFlix is focused on improving the visual design, making the gallery feel more immersive, and building a stronger anime streaming aesthetic throughout the app.
+The next stage of AniFlix is about turning the polished front-end shell into a fuller product: a larger catalog, stronger discovery flows, and a data model that can grow beyond a single curated starter collection.
