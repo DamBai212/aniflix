@@ -121,3 +121,30 @@ test('renders the not found page for unmatched nested routes', () => {
   expect(screen.getByRole('heading', { name: /page not found/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /return to home page/i })).toBeInTheDocument();
 });
+
+test('filters the gallery by genre and updates the spotlight', () => {
+  render(<App />);
+
+  userEvent.click(screen.getByRole('button', { name: 'Thriller' }));
+
+  expect(screen.getByRole('button', { name: 'Thriller' })).toHaveAttribute('aria-pressed', 'true');
+  expect(screen.getByRole('link', { name: /spotlight attack on titan/i })).toBeInTheDocument();
+  expect(screen.getByText(/showing 1 title in thriller/i)).toBeInTheDocument();
+  expect(screen.queryByAltText(/jujutsu logo/i)).not.toBeInTheDocument();
+});
+
+test('shows an empty state when search returns no anime and can be reset', () => {
+  render(<App />);
+
+  fireEvent.change(screen.getByRole('searchbox', { name: /search anime collection/i }), {
+    target: { value: 'Bleach' }
+  });
+
+  expect(screen.getByRole('heading', { name: /reset the lineup/i })).toBeInTheDocument();
+  expect(screen.getByText(/no anime matched your search/i)).toBeInTheDocument();
+
+  userEvent.click(screen.getAllByRole('button', { name: /clear filters/i })[0]);
+
+  expect(screen.getByRole('link', { name: /spotlight jujutsu/i })).toBeInTheDocument();
+  expect(screen.getByDisplayValue('')).toBeInTheDocument();
+});
