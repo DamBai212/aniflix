@@ -1,35 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import getGallery from './getGallery.js';
+import {
+  getAnimeGenres,
+  getFeaturedAnime,
+  queryAnimeCatalog
+} from './data/animeRepository.js';
 import Anime from './Anime.js';
 import Slider from './Slider.js';
 
 const featuredAnimeIds = ['jujutsu', 'onepiece', 'myheroacademia', 'attackontitan'];
 
 export default function Gallery() {
-  const animeList = getGallery();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-  const normalizedSearchTerm = searchTerm.trim().toLowerCase();
-  const genreOptions = ['All', ...new Set(animeList.map((anime) => anime.genre))];
-  const filteredAnimeList = animeList.filter((anime) => {
-    const matchesGenre = selectedGenre === 'All' || anime.genre === selectedGenre;
-    const matchesSearch = normalizedSearchTerm === ''
-      || [anime.name, anime.genre, anime.tagline]
-        .join(' ')
-        .toLowerCase()
-        .includes(normalizedSearchTerm);
-
-    return matchesGenre && matchesSearch;
+  const genreOptions = getAnimeGenres();
+  const filteredAnimeList = queryAnimeCatalog({
+    genre: selectedGenre,
+    searchTerm
   });
-  const featuredItems = featuredAnimeIds
-    .map((animeId) => filteredAnimeList.find((anime) => anime.id === animeId))
-    .filter(Boolean);
+  const featuredItems = getFeaturedAnime(featuredAnimeIds, filteredAnimeList);
   const carouselItems = featuredItems.length > 0 ? featuredItems : filteredAnimeList;
   const featuredCount = carouselItems.length;
   const featuredAnime = carouselItems[currentIndex] || null;
-  const hasActiveFilters = selectedGenre !== 'All' || normalizedSearchTerm !== '';
+  const hasActiveFilters = selectedGenre !== 'All' || searchTerm.trim() !== '';
   const trimmedSearchTerm = searchTerm.trim();
   const showcaseHighlights = featuredAnime
     ? [

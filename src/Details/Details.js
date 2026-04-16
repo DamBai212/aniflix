@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import getGallery from '../getGallery';
+import {
+  getAnimeById,
+  getAnimeCatalog
+} from '../data/animeRepository.js';
 import './Details.css';
 
 function DetailStat({ label, value }) {
@@ -42,10 +45,8 @@ function RecommendationCard({ animeData }) {
 }
 
 export default function Details(props) {
-  const animeList = getGallery();
-  const selectedAnime = animeList.find(
-    (anime) => anime.id === props.match.params.animeId
-  );
+  const animeList = getAnimeCatalog();
+  const selectedAnime = getAnimeById(props.match.params.animeId);
 
   if (!selectedAnime) {
     return <Redirect to='/not-found' />;
