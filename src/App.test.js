@@ -133,6 +133,35 @@ test('filters the gallery by genre and updates the spotlight', () => {
   expect(screen.queryByAltText(/jujutsu logo/i)).not.toBeInTheDocument();
 });
 
+test('reads gallery filters from the url query string', () => {
+  window.history.pushState({}, 'Filtered anime page', '/animes?genre=Thriller&search=wall');
+
+  render(<App />);
+
+  expect(screen.getByRole('button', { name: 'Thriller' })).toHaveAttribute('aria-pressed', 'true');
+  expect(screen.getByRole('searchbox', { name: /search anime collection/i })).toHaveValue('wall');
+  expect(screen.getByRole('link', { name: /spotlight attack on titan/i })).toBeInTheDocument();
+  expect(screen.getByText(/showing 1 title in thriller for "wall"/i)).toBeInTheDocument();
+});
+
+test('syncs gallery filters to the url query string', () => {
+  window.history.pushState({}, 'Anime page', '/animes');
+
+  render(<App />);
+
+  userEvent.click(screen.getByRole('button', { name: 'Thriller' }));
+  expect(window.location.pathname).toBe('/animes');
+  expect(window.location.search).toBe('?genre=Thriller');
+
+  fireEvent.change(screen.getByRole('searchbox', { name: /search anime collection/i }), {
+    target: { value: 'wall' }
+  });
+  expect(window.location.search).toBe('?genre=Thriller&search=wall');
+
+  userEvent.click(screen.getAllByRole('button', { name: /clear filters/i })[0]);
+  expect(window.location.search).toBe('');
+});
+
 test('shows an empty state when search returns no anime and can be reset', () => {
   render(<App />);
 

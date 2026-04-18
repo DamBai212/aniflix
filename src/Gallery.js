@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   getAnimeGenres,
   getFeaturedAnime,
@@ -8,13 +8,45 @@ import {
 import Anime from './Anime.js';
 import Slider from './Slider.js';
 
+const defaultGenre = 'All';
 const featuredAnimeIds = ['jujutsu', 'onepiece', 'myheroacademia', 'attackontitan'];
+const galleryGenreOptions = getAnimeGenres();
+
+function getGalleryFiltersFromSearch(search, genreOptions) {
+  const searchParams = new URLSearchParams(search);
+  const nextGenre = searchParams.get('genre') || defaultGenre;
+  const nextSearchTerm = searchParams.get('search') || '';
+
+  return {
+    selectedGenre: genreOptions.includes(nextGenre) ? nextGenre : defaultGenre,
+    searchTerm: nextSearchTerm
+  };
+}
+
+function buildGallerySearch({ selectedGenre, searchTerm }) {
+  const searchParams = new URLSearchParams();
+  const trimmedSearchTerm = searchTerm.trim();
+
+  if (selectedGenre !== defaultGenre) {
+    searchParams.set('genre', selectedGenre);
+  }
+
+  if (trimmedSearchTerm) {
+    searchParams.set('search', trimmedSearchTerm);
+  }
+
+  const nextSearch = searchParams.toString();
+
+  return nextSearch ? `?${nextSearch}` : '';
+}
 
 export default function Gallery() {
+  const history = useHistory();
+  const location = useLocation();
+  const initialFilters = getGalleryFiltersFromSearch(location.search, galleryGenreOptions);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedGenre, setSelectedGenre] = useState('All');
-  const [searchTerm, setSearchTerm] = useState('');
-  const genreOptions = getAnimeGenres();
+  const [selectedGenre, setSelectedGenre] = useState(initialFilters.selectedGenre);
+  const [searchTerm, setSearchTerm] = useState(initialFilters.searchTerm);
   const filteredAnimeList = queryAnimeCatalog({
     genre: selectedGenre,
     searchTerm
@@ -48,6 +80,26 @@ export default function Gallery() {
 
     setCurrentIndex(0);
   }, [currentIndex, featuredCount]);
+
+  useEffect(() => {
+    const nextFilters = getGalleryFiltersFromSearch(location.search, galleryGenreOptions);
+
+    setSelectedGenre(nextFilters.selectedGenre);
+    setSearchTerm(nextFilters.searchTerm);
+  }, [location.search]);
+
+  useEffect(() => {
+    const nextSearch = buildGallerySearch({ selectedGenre, searchTerm });
+
+    if (nextSearch === location.search) {
+      return;
+    }
+
+    history.replace({
+      pathname: location.pathname,
+      search: nextSearch
+    });
+  }, [history, location.pathname, location.search, searchTerm, selectedGenre]);
 
   const handleNext = () => {
     if (featuredCount <= 1) {
@@ -254,7 +306,7 @@ export default function Gallery() {
           <div className='gallery-filter-group'>
             <span className='gallery-search-label'>Genre filters</span>
             <div className='gallery-filter-row' role='toolbar' aria-label='Filter anime by genre'>
-              {genreOptions.map((genre) => (
+              {galleryGenreOptions.map((genre) => (
                 <button
                   key={genre}
                   type='button'
