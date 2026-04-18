@@ -40,9 +40,9 @@ class App extends Component{
                   />
                 )}
               />
-              {/* made details url dynamic */}
               <Route exact path='/not-found' component={NotFound} />
               <Route exact path='/:animeId' component={Details} />
+              <Route component={NotFound} />
             </Switch>
         </div>
       </Router>

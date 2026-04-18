@@ -1,0 +1,51 @@
+import {
+  getAnimeById,
+  getAnimeCatalog,
+  getAnimeGenres,
+  getFeaturedAnime,
+  queryAnimeCatalog
+} from './animeRepository.js';
+
+test('returns the full anime catalog with mapped cover assets', () => {
+  const animeCatalog = getAnimeCatalog();
+
+  expect(animeCatalog).toHaveLength(6);
+  expect(animeCatalog[0]).toMatchObject({
+    id: 'jujutsu',
+    cName: 'dropdown-link'
+  });
+  expect(animeCatalog[0].cover).toBeTruthy();
+});
+
+test('returns a single anime by id', () => {
+  expect(getAnimeById('naruto')).toMatchObject({
+    id: 'naruto',
+    genre: 'Shonen'
+  });
+  expect(getAnimeById('bleach')).toBeNull();
+});
+
+test('returns stable genre options with an all filter first', () => {
+  expect(getAnimeGenres()).toEqual([
+    'All',
+    'Dark Fantasy',
+    'Adventure',
+    'Action',
+    'Shonen',
+    'Superhero',
+    'Thriller'
+  ]);
+});
+
+test('filters featured anime by the requested ids in order', () => {
+  expect(getFeaturedAnime(['attackontitan', 'jujutsu']).map((anime) => anime.id)).toEqual([
+    'attackontitan',
+    'jujutsu'
+  ]);
+});
+
+test('queries the catalog by genre and search term', () => {
+  expect(queryAnimeCatalog({ genre: 'Action' }).map((anime) => anime.id)).toEqual(['fireforce']);
+  expect(queryAnimeCatalog({ searchTerm: 'treasure' }).map((anime) => anime.id)).toEqual(['onepiece']);
+  expect(queryAnimeCatalog({ genre: 'Thriller', searchTerm: 'walls' }).map((anime) => anime.id)).toEqual(['attackontitan']);
+});
