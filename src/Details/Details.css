@@ -54,6 +54,7 @@
 
 .details-hero,
 .details-grid,
+.details-media-layout,
 .details-poster-column,
 .details-stats,
 .details-feature-grid,
@@ -62,6 +63,7 @@
 }
 
 .details-hero,
+.details-media-layout,
 .details-grid {
   gap: 1.5rem;
 }
@@ -288,6 +290,11 @@
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.9fr);
 }
 
+.details-media-layout {
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.9fr);
+  margin-bottom: 2rem;
+}
+
 .details-section {
   padding: 1.5rem;
 }
@@ -343,6 +350,82 @@
 
 .details-feature p {
   line-height: 1.7;
+}
+
+.details-media-section,
+.details-media-aside {
+  min-height: 100%;
+}
+
+.details-media-frame {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background: rgba(3, 6, 14, 0.8);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.24);
+}
+
+.details-media-frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.details-clip-meta {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1.35rem 0 1.5rem;
+}
+
+.details-clip-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.details-clip-meta-label {
+  color: rgba(247, 229, 190, 0.88);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.details-clip-meta-value {
+  color: #fff7ec;
+  font-size: 0.94rem;
+  text-align: right;
+}
+
+.details-source-link {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--details-accent, #ff8a5b) 0%, #ffd166 100%);
+  color: #09101d;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.details-source-link:hover,
+.details-source-link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
 }
 
 .details-section--secondary {
@@ -417,6 +500,7 @@
   }
 
   .details-hero,
+  .details-media-layout,
   .details-grid {
     grid-template-columns: 1fr;
   }
@@ -438,7 +522,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .details-recommendation {
+  .details-recommendation,
+  .details-source-link {
     transition: none;
   }
 }

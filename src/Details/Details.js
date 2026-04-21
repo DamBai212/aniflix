@@ -25,6 +25,15 @@ function DetailFeature({ label, title, copy }) {
   );
 }
 
+function ClipMeta({ label, value }) {
+  return (
+    <div className='details-clip-meta-row'>
+      <span className='details-clip-meta-label'>{label}</span>
+      <strong className='details-clip-meta-value'>{value}</strong>
+    </div>
+  );
+}
+
 function RecommendationCard({ animeData }) {
   return (
     <Link to={`/${animeData.id}`} className='details-recommendation'>
@@ -51,6 +60,8 @@ export default function Details(props) {
   if (!selectedAnime) {
     return <Redirect to='/not-found' />;
   }
+
+  const mediaClip = selectedAnime.mediaClip;
 
   const detailStats = [
     { label: 'Genre', value: selectedAnime.genre },
@@ -107,6 +118,11 @@ export default function Details(props) {
             <Link to='/animes' className='action-button action-button-primary'>
               Browse more anime
             </Link>
+            {mediaClip ? (
+              <a href='#details-media' className='action-button action-button-secondary'>
+                Jump to official clip
+              </a>
+            ) : null}
             <Link to='/' className='action-button action-button-secondary'>
               Return home
             </Link>
@@ -135,6 +151,53 @@ export default function Details(props) {
           </div>
         </div>
       </section>
+
+      {mediaClip ? (
+        <section id='details-media' className='details-media-layout'>
+          <div className='details-section details-media-section'>
+            <p className='details-section-kicker'>Official clip</p>
+            <h2 className='details-section-title'>Preview the vibe before you commit to the binge</h2>
+            <p className='details-panel-copy'>
+              AniFlix now pulls in a verified trailer or distributor clip so each detail page
+              feels more alive without hosting copyrighted footage directly.
+            </p>
+
+            <div className='details-media-frame'>
+              <iframe
+                src={mediaClip.embedUrl}
+                title={`${selectedAnime.name} official trailer player`}
+                loading='lazy'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          <aside className='details-section details-section--secondary details-media-aside'>
+            <p className='details-section-kicker'>Source details</p>
+            <h2 className='details-section-title'>{mediaClip.title}</h2>
+            <p className='details-panel-copy'>
+              This clip is embedded from the official or licensed distributor upload to keep the
+              experience interactive while staying transparent about where the footage comes from.
+            </p>
+
+            <div className='details-clip-meta'>
+              <ClipMeta label='Clip type' value={mediaClip.type} />
+              <ClipMeta label='Provider' value={mediaClip.provider} />
+              <ClipMeta label='Source' value={mediaClip.sourceLabel} />
+            </div>
+
+            <a
+              className='details-source-link'
+              href={mediaClip.sourceUrl}
+              target='_blank'
+              rel='noreferrer'
+            >
+              Watch {selectedAnime.name} clip on YouTube
+            </a>
+          </aside>
+        </section>
+      ) : null}
 
       <section className='details-grid'>
         <div className='details-section'>

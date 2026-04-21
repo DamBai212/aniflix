@@ -100,8 +100,20 @@ test('renders anime details for a known route', () => {
 
   render(<App />);
 
-  expect(screen.getByRole('heading', { name: /jujutsu/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { level: 1, name: /jujutsu/i })).toBeInTheDocument();
   expect(screen.getByText(/yuji itadori/i)).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /jump to official clip/i })).toHaveAttribute(
+    'href',
+    '#details-media'
+  );
+  expect(screen.getByTitle(/jujutsu official trailer player/i)).toHaveAttribute(
+    'src',
+    expect.stringContaining('youtube-nocookie.com/embed/pkKu9hLT-t8')
+  );
+  expect(screen.getByRole('link', { name: /watch jujutsu clip on youtube/i })).toHaveAttribute(
+    'href',
+    'https://www.youtube.com/watch?v=pkKu9hLT-t8'
+  );
 });
 
 test('redirects unknown anime ids to the not found page', () => {

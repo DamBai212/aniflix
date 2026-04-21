@@ -1,5 +1,6 @@
 import animeRecords from './animeRecords.js';
 import animeMedia from './animeMedia.js';
+import animeClips from './animeClips.js';
 
 const defaultGenre = 'All';
 const searchableFields = ['name', 'genre', 'tagline'];
@@ -8,6 +9,7 @@ const animeCatalog = Object.freeze(
     Object.freeze({
       ...anime,
       cover: animeMedia[anime.id],
+      mediaClip: animeClips[anime.id] || null,
       cName: 'dropdown-link'
     })
   )

@@ -20,7 +20,10 @@ test('returns the full anime catalog with mapped cover assets', () => {
 test('returns a single anime by id', () => {
   expect(getAnimeById('naruto')).toMatchObject({
     id: 'naruto',
-    genre: 'Shonen'
+    genre: 'Shonen',
+    mediaClip: {
+      provider: 'VIZ'
+    }
   });
   expect(getAnimeById('bleach')).toBeNull();
 });
