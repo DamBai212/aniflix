@@ -1,39 +1,33 @@
-import animeRecords from './animeRecords.js';
 import animeMedia from './animeMedia.js';
 import animeClips from './animeClips.js';
 
-const defaultGenre = 'All';
+export const defaultGenre = 'All';
 const searchableFields = ['name', 'genre', 'tagline'];
-const animeCatalog = Object.freeze(
-  animeRecords.map((anime) =>
-    Object.freeze({
-      ...anime,
-      cover: animeMedia[anime.id],
-      mediaClip: animeClips[anime.id] || null,
-      cName: 'dropdown-link'
-    })
-  )
-);
 
-export function getAnimeCatalog() {
-  return animeCatalog.slice();
+export function createAnimeCatalog(animeRecords = []) {
+  return animeRecords.map((anime) => ({
+    ...anime,
+    cover: animeMedia[anime.id],
+    mediaClip: animeClips[anime.id] || null,
+    cName: 'dropdown-link'
+  }));
 }
 
-export function getAnimeById(animeId) {
+export function getAnimeById(animeId, animeCatalog = []) {
   return animeCatalog.find((anime) => anime.id === animeId) || null;
 }
 
-export function getAnimeGenres() {
+export function getAnimeGenres(animeCatalog = []) {
   return [defaultGenre, ...new Set(animeCatalog.map((anime) => anime.genre))];
 }
 
-export function getFeaturedAnime(featuredAnimeIds, animeList = animeCatalog) {
+export function getFeaturedAnime(featuredAnimeIds, animeList = []) {
   return featuredAnimeIds
     .map((animeId) => animeList.find((anime) => anime.id === animeId))
     .filter(Boolean);
 }
 
-export function queryAnimeCatalog(filters = {}) {
+export function queryAnimeCatalog(filters = {}, animeCatalog = []) {
   const {
     genre = defaultGenre,
     searchTerm = ''

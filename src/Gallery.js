@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
+  defaultGenre,
   getAnimeGenres,
   getFeaturedAnime,
   queryAnimeCatalog
 } from './data/animeRepository.js';
+import { useAnimeData } from './data/AnimeDataContext.js';
 import Anime from './Anime.js';
+import Loading from './Loading.js';
 import Slider from './Slider.js';
 
-const defaultGenre = 'All';
 const featuredAnimeIds = ['jujutsu', 'onepiece', 'myheroacademia', 'attackontitan'];
-const galleryGenreOptions = getAnimeGenres();
 
-function getGalleryFiltersFromSearch(search, genreOptions) {
+function getGalleryFiltersFromSearch(search, genreOptions = null) {
   const searchParams = new URLSearchParams(search);
   const nextGenre = searchParams.get('genre') || defaultGenre;
   const nextSearchTerm = searchParams.get('search') || '';
+  const isGenreValid = !genreOptions || genreOptions.includes(nextGenre);
 
   return {
-    selectedGenre: genreOptions.includes(nextGenre) ? nextGenre : defaultGenre,
+    selectedGenre: isGenreValid ? nextGenre : defaultGenre,
     searchTerm: nextSearchTerm
   };
 }
@@ -43,14 +45,16 @@ function buildGallerySearch({ selectedGenre, searchTerm }) {
 export default function Gallery() {
   const history = useHistory();
   const location = useLocation();
-  const initialFilters = getGalleryFiltersFromSearch(location.search, galleryGenreOptions);
+  const { animeCatalog, status, reloadAnimeCatalog } = useAnimeData();
+  const genreOptions = getAnimeGenres(animeCatalog);
+  const initialFilters = getGalleryFiltersFromSearch(location.search);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedGenre, setSelectedGenre] = useState(initialFilters.selectedGenre);
   const [searchTerm, setSearchTerm] = useState(initialFilters.searchTerm);
   const filteredAnimeList = queryAnimeCatalog({
     genre: selectedGenre,
     searchTerm
-  });
+  }, animeCatalog);
   const featuredItems = getFeaturedAnime(featuredAnimeIds, filteredAnimeList);
   const carouselItems = featuredItems.length > 0 ? featuredItems : filteredAnimeList;
   const featuredCount = carouselItems.length;
@@ -82,13 +86,21 @@ export default function Gallery() {
   }, [currentIndex, featuredCount]);
 
   useEffect(() => {
-    const nextFilters = getGalleryFiltersFromSearch(location.search, galleryGenreOptions);
+    if (status !== 'success') {
+      return;
+    }
+
+    const nextFilters = getGalleryFiltersFromSearch(location.search, getAnimeGenres(animeCatalog));
 
     setSelectedGenre(nextFilters.selectedGenre);
     setSearchTerm(nextFilters.searchTerm);
-  }, [location.search]);
+  }, [animeCatalog, location.search, status]);
 
   useEffect(() => {
+    if (status !== 'success') {
+      return;
+    }
+
     const nextSearch = buildGallerySearch({ selectedGenre, searchTerm });
 
     if (nextSearch === location.search) {
@@ -99,7 +111,7 @@ export default function Gallery() {
       pathname: location.pathname,
       search: nextSearch
     });
-  }, [history, location.pathname, location.search, searchTerm, selectedGenre]);
+  }, [history, location.pathname, location.search, searchTerm, selectedGenre, status]);
 
   const handleNext = () => {
     if (featuredCount <= 1) {
@@ -128,10 +140,42 @@ export default function Gallery() {
   };
 
   const clearFilters = () => {
-    setSelectedGenre('All');
+    setSelectedGenre(defaultGenre);
     setSearchTerm('');
     setCurrentIndex(0);
   };
+
+  if (status === 'loading') {
+    return (
+      <Loading
+        title='Loading the anime gallery'
+        body='Fetching the AniFlix catalog so featured picks, filters, and the browsing shelf all render from the same shared data source.'
+      />
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <main className='content-page'>
+        <section className='content-panel'>
+          <p className='content-eyebrow'>Catalog unavailable</p>
+          <h1>The AniFlix shelf could not load</h1>
+          <p>
+            The gallery is now driven by a shared API-style data flow, and the first catalog
+            request did not complete. Try the fetch again or jump back home.
+          </p>
+          <div className='showcase-actions'>
+            <button type='button' className='action-button action-button-primary' onClick={reloadAnimeCatalog}>
+              Retry catalog fetch
+            </button>
+            <Link to='/' className='action-button action-button-secondary'>
+              Return home
+            </Link>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className='gallery-page'>
@@ -306,7 +350,7 @@ export default function Gallery() {
           <div className='gallery-filter-group'>
             <span className='gallery-search-label'>Genre filters</span>
             <div className='gallery-filter-row' role='toolbar' aria-label='Filter anime by genre'>
-              {galleryGenreOptions.map((genre) => (
+              {genreOptions.map((genre) => (
                 <button
                   key={genre}
                   type='button'

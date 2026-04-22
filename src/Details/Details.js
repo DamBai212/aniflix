@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import {
-  getAnimeById,
-  getAnimeCatalog
+  getAnimeById
 } from '../data/animeRepository.js';
+import { useAnimeData } from '../data/AnimeDataContext.js';
+import Loading from '../Loading.js';
 import './Details.css';
 
 function DetailStat({ label, value }) {
@@ -54,8 +55,42 @@ function RecommendationCard({ animeData }) {
 }
 
 export default function Details(props) {
-  const animeList = getAnimeCatalog();
-  const selectedAnime = getAnimeById(props.match.params.animeId);
+  const { animeCatalog, status, reloadAnimeCatalog } = useAnimeData();
+
+  if (status === 'loading') {
+    return (
+      <Loading
+        title='Loading anime details'
+        body='Syncing the selected title with the shared AniFlix catalog so the detail page, recommendations, and official clip stay aligned.'
+      />
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <main className='content-page'>
+        <section className='content-panel'>
+          <p className='content-eyebrow'>Detail page offline</p>
+          <h1>We could not load this anime right now</h1>
+          <p>
+            The detail screen now reads from the same shared catalog as the rest of the app, and
+            that request did not complete. Try the fetch again or browse back to the home page.
+          </p>
+          <div className='showcase-actions'>
+            <button type='button' className='action-button action-button-primary' onClick={reloadAnimeCatalog}>
+              Retry catalog fetch
+            </button>
+            <Link to='/' className='action-button action-button-secondary'>
+              Return home
+            </Link>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  const animeList = animeCatalog;
+  const selectedAnime = getAnimeById(props.match.params.animeId, animeList);
 
   if (!selectedAnime) {
     return <Redirect to='/not-found' />;
