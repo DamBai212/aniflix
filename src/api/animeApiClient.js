@@ -1,26 +1,31 @@
-import { createAnimeApi } from '../backend/app.js';
+import { createAnimeCatalog, getAnimeById } from '../data/animeRepository.js';
 
-const animeApi = createAnimeApi();
+const animeCatalogEndpoint = `${process.env.PUBLIC_URL || ''}/api/animes.json`;
 
-function cloneAnime(anime) {
-  if (!anime) {
-    return null;
+async function requestAnimeRecords() {
+  const response = await fetch(animeCatalogEndpoint, {
+    headers: {
+      Accept: 'application/json'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`AniFlix catalog request failed with status ${response.status}`);
   }
 
-  return {
-    ...anime,
-    mediaClip: anime.mediaClip ? { ...anime.mediaClip } : null
-  };
+  const animeRecords = await response.json();
+
+  if (!Array.isArray(animeRecords)) {
+    throw new Error('AniFlix catalog payload was not an array');
+  }
+
+  return animeRecords;
 }
 
-function resolveAnimeRequest(callback) {
-  return Promise.resolve().then(() => callback());
+export async function fetchAnimeCatalog() {
+  return createAnimeCatalog(await requestAnimeRecords());
 }
 
-export function fetchAnimeCatalog() {
-  return resolveAnimeRequest(() => animeApi.listAnimes().map((anime) => cloneAnime(anime)));
-}
-
-export function fetchAnimeById(animeId) {
-  return resolveAnimeRequest(() => cloneAnime(animeApi.getAnime(animeId)));
+export async function fetchAnimeById(animeId) {
+  return getAnimeById(animeId, await fetchAnimeCatalog());
 }

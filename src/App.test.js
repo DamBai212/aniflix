@@ -5,6 +5,7 @@ import App from './App';
 async function flushAnimeCatalog() {
   await act(async () => {
     await Promise.resolve();
+    await Promise.resolve();
   });
 }
 
