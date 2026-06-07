@@ -155,6 +155,15 @@
   line-height: 1.7;
 }
 
+.details-original-title {
+  margin-bottom: 0.9rem;
+  color: rgba(247, 229, 190, 0.82);
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .details-meta {
   display: flex;
   flex-wrap: wrap;
@@ -328,6 +337,76 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
   margin-top: 1.4rem;
+}
+
+.details-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 1.2rem;
+}
+
+.details-fact-card,
+.details-chip-panel {
+  position: relative;
+  z-index: 1;
+  padding: 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.details-fact-label {
+  margin-bottom: 0.8rem;
+  color: rgba(247, 229, 190, 0.84);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.details-fact-value {
+  color: #fff4e3;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.08;
+}
+
+.details-chip-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.details-subsection-title {
+  color: #fff4e3;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.details-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+}
+
+.details-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(4, 7, 15, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(247, 237, 215, 0.94);
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .details-feature {
@@ -514,6 +593,10 @@
 
   .details-title {
     font-size: 4rem;
+  }
+
+  .details-fact-value {
+    font-size: 1.35rem;
   }
 
   .details-recommendation {

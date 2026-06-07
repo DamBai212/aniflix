@@ -26,6 +26,28 @@ function DetailFeature({ label, title, copy }) {
   );
 }
 
+function DetailFact({ label, value }) {
+  return (
+    <article className='details-fact-card'>
+      <p className='details-fact-label'>{label}</p>
+      <h3 className='details-fact-value'>{value}</h3>
+    </article>
+  );
+}
+
+function DetailPillGroup({ title, items }) {
+  return (
+    <section className='details-chip-panel'>
+      <h3 className='details-subsection-title'>{title}</h3>
+      <div className='details-pill-row'>
+        {items.map((item) => (
+          <span key={item} className='details-pill'>{item}</span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ClipMeta({ label, value }) {
   return (
     <div className='details-clip-meta-row'>
@@ -97,28 +119,37 @@ export default function Details(props) {
   }
 
   const mediaClip = selectedAnime.mediaClip;
+  const detailFacts = [
+    { label: 'Original title', value: selectedAnime.originalTitle },
+    { label: 'Format', value: selectedAnime.format },
+    { label: 'Seasons', value: selectedAnime.seasonCountLabel },
+    { label: 'Episode scope', value: selectedAnime.episodeCountLabel },
+    { label: 'Studio', value: selectedAnime.studio },
+    { label: 'Setting', value: selectedAnime.setting }
+  ];
 
   const detailStats = [
-    { label: 'Genre', value: selectedAnime.genre },
-    { label: 'Release', value: selectedAnime.year },
-    { label: 'Rating', value: `${selectedAnime.rating}/5` }
+    { label: 'Studio', value: selectedAnime.studio },
+    { label: 'Status', value: selectedAnime.releaseStatus },
+    { label: 'Episodes', value: selectedAnime.episodeCountLabel },
+    { label: 'Runtime', value: selectedAnime.runtime }
   ];
 
   const featureCards = [
     {
-      label: 'Mood',
-      title: selectedAnime.tagline,
-      copy: `A ${selectedAnime.genre.toLowerCase()} spotlight framed for high-impact browsing and late-night queue energy.`
+      label: 'World',
+      title: selectedAnime.setting,
+      copy: `A ${selectedAnime.format.toLowerCase()} framed around ${selectedAnime.signatureTags[0].toLowerCase()} and built for high-stakes late-night queue energy.`
     },
     {
-      label: 'Release',
-      title: selectedAnime.year,
-      copy: `A standout library pick from ${selectedAnime.year} that still feels right at home on a modern streaming shelf.`
+      label: 'Runway',
+      title: selectedAnime.episodeCountLabel,
+      copy: `${selectedAnime.seasonCountLabel} of momentum means plenty of space for ${selectedAnime.signatureTags[1].toLowerCase()} and long-form payoff.`
     },
     {
-      label: 'Viewer Score',
-      title: `${selectedAnime.rating}/5`,
-      copy: 'One of the strongest-rated titles in the AniFlix collection, with the artwork and synopsis leading the experience.'
+      label: 'Craft',
+      title: selectedAnime.studio,
+      copy: `Queue it up in ${selectedAnime.audioOptions.join(' or ').toLowerCase()} when you want ${selectedAnime.signatureTags[2].toLowerCase()} with polished character-forward staging.`
     }
   ];
 
@@ -142,10 +173,15 @@ export default function Details(props) {
           </Link>
           <p className='details-eyebrow'>{selectedAnime.genre} spotlight</p>
           <h1 className='details-title'>{selectedAnime.name}</h1>
+          {selectedAnime.originalTitle !== selectedAnime.name ? (
+            <p className='details-original-title'>Original title: {selectedAnime.originalTitle}</p>
+          ) : null}
           <p className='details-tagline'>{selectedAnime.tagline}</p>
           <div className='details-meta'>
             <span>{selectedAnime.genre}</span>
+            <span>{selectedAnime.format}</span>
             <span>{selectedAnime.year}</span>
+            <span>{selectedAnime.releaseStatus}</span>
             <span>{selectedAnime.rating}/5 rating</span>
           </div>
           <p className='details-synopsis'>{selectedAnime.synopsis}</p>
@@ -236,13 +272,28 @@ export default function Details(props) {
 
       <section className='details-grid'>
         <div className='details-section'>
-          <p className='details-section-kicker'>Why it stands out</p>
-          <h2 className='details-section-title'>A binge-worthy pick for the AniFlix shelf</h2>
+          <p className='details-section-kicker'>Series profile</p>
+          <h2 className='details-section-title'>The queue-fit breakdown for this AniFlix spotlight</h2>
           <p className='details-panel-copy'>
-            This view leans into a cinematic presentation, pairing stronger typography,
-            focused metadata, and immersive artwork so each title feels like a featured
-            streaming release instead of a plain detail screen.
+            This richer layout gives each title a stronger catalog identity, pairing quick facts,
+            tone markers, and series context so the shelf feels closer to a real streaming browse
+            flow than a single synopsis block.
           </p>
+
+          <div className='details-facts-grid'>
+            {detailFacts.map((fact) => (
+              <DetailFact
+                key={fact.label}
+                label={fact.label}
+                value={fact.value}
+              />
+            ))}
+          </div>
+
+          <div className='details-chip-layout'>
+            <DetailPillGroup title='Signature tags' items={selectedAnime.signatureTags} />
+            <DetailPillGroup title='Audio options' items={selectedAnime.audioOptions} />
+          </div>
 
           <div className='details-feature-grid'>
             {featureCards.map((feature) => (

@@ -115,6 +115,10 @@ test('renders anime details for a known route', async () => {
 
   expect(await screen.findByRole('heading', { level: 1, name: /jujutsu/i })).toBeInTheDocument();
   expect(screen.getByText(/yuji itadori/i)).toBeInTheDocument();
+  expect(screen.getAllByText(/mappa/i).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/47\+ episodes/i).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/urban exorcism/i).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/english dub/i).length).toBeGreaterThan(0);
   expect(screen.getByRole('link', { name: /jump to official clip/i })).toHaveAttribute(
     'href',
     '#details-media'
