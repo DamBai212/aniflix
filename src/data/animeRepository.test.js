@@ -22,6 +22,9 @@ test('returns a single anime by id', () => {
   expect(getAnimeById('naruto', animeCatalog)).toMatchObject({
     id: 'naruto',
     genre: 'Shonen',
+    studio: 'Pierrot',
+    episodeCountLabel: '500 episodes',
+    audioOptions: expect.arrayContaining(['English dub']),
     mediaClip: {
       provider: 'VIZ'
     }

@@ -10,6 +10,8 @@ test('fetches the public anime catalog and enriches it for the UI', async () => 
   });
   expect(animeCatalog[0]).toMatchObject({
     id: 'jujutsu',
+    studio: 'MAPPA',
+    signatureTags: expect.arrayContaining(['Urban exorcism']),
     cover: expect.any(String),
     mediaClip: {
       provider: 'Crunchyroll'
@@ -20,7 +22,8 @@ test('fetches the public anime catalog and enriches it for the UI', async () => 
 test('returns a single anime from the fetched catalog by id', async () => {
   await expect(fetchAnimeById('naruto')).resolves.toMatchObject({
     id: 'naruto',
-    genre: 'Shonen'
+    genre: 'Shonen',
+    releaseStatus: 'Completed'
   });
   await expect(fetchAnimeById('bleach')).resolves.toBeNull();
 });
