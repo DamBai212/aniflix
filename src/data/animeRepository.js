@@ -2,7 +2,27 @@ import animeMedia from './animeMedia.js';
 import animeClips from './animeClips.js';
 
 export const defaultGenre = 'All';
-const searchableFields = ['name', 'genre', 'tagline'];
+const searchableFields = [
+  'name',
+  'originalTitle',
+  'genre',
+  'format',
+  'tagline',
+  'studio',
+  'releaseStatus',
+  'seasonCountLabel',
+  'episodeCountLabel',
+  'runtime',
+  'setting',
+  'audioOptions',
+  'signatureTags'
+];
+
+function getSearchableValue(anime, field) {
+  const value = anime[field];
+
+  return Array.isArray(value) ? value.join(' ') : value || '';
+}
 
 export function createAnimeCatalog(animeRecords = []) {
   return animeRecords.map((anime) => ({
@@ -38,7 +58,7 @@ export function queryAnimeCatalog(filters = {}, animeCatalog = []) {
     const matchesGenre = genre === defaultGenre || anime.genre === genre;
     const matchesSearch = normalizedSearchTerm === ''
       || searchableFields
-        .map((field) => anime[field])
+        .map((field) => getSearchableValue(anime, field))
         .join(' ')
         .toLowerCase()
         .includes(normalizedSearchTerm);

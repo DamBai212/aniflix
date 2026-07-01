@@ -55,4 +55,13 @@ test('queries the catalog by genre and search term', () => {
   expect(queryAnimeCatalog({ genre: 'Action' }, animeCatalog).map((anime) => anime.id)).toEqual(['fireforce']);
   expect(queryAnimeCatalog({ searchTerm: 'treasure' }, animeCatalog).map((anime) => anime.id)).toEqual(['onepiece']);
   expect(queryAnimeCatalog({ genre: 'Thriller', searchTerm: 'walls' }, animeCatalog).map((anime) => anime.id)).toEqual(['attackontitan']);
+  expect(queryAnimeCatalog({ searchTerm: 'MAPPA' }, animeCatalog).map((anime) => anime.id)).toEqual(['jujutsu', 'attackontitan']);
+  expect(queryAnimeCatalog({ searchTerm: 'English dub' }, animeCatalog).map((anime) => anime.id)).toEqual([
+    'jujutsu',
+    'onepiece',
+    'fireforce',
+    'naruto',
+    'myheroacademia',
+    'attackontitan'
+  ]);
 });

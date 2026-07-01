@@ -175,6 +175,20 @@ test('reads gallery filters from the url query string', async () => {
   expect(screen.getByText(/showing 1 title in thriller for "wall"/i)).toBeInTheDocument();
 });
 
+test('searches the gallery using enriched catalog metadata', async () => {
+  render(<App />);
+  await screen.findByRole('searchbox', { name: /search anime collection/i });
+
+  fireEvent.change(screen.getByRole('searchbox', { name: /search anime collection/i }), {
+    target: { value: 'MAPPA' }
+  });
+
+  expect(screen.getByText(/showing 2 titles across all genres for "mappa"/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/jujutsu logo/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/attack on titan logo/i)).toBeInTheDocument();
+  expect(screen.queryByAltText(/one piece logo/i)).not.toBeInTheDocument();
+});
+
 test('syncs gallery filters to the url query string', async () => {
   window.history.pushState({}, 'Anime page', '/animes');
 

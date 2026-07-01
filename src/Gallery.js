@@ -342,7 +342,7 @@ export default function Gallery() {
               type='search'
               value={searchTerm}
               onChange={handleSearchChange}
-              placeholder='Search by title, genre, or vibe'
+              placeholder='Search by title, studio, tag, or vibe'
               aria-label='Search anime collection'
             />
           </label>
