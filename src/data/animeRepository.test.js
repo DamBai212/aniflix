@@ -16,8 +16,10 @@ test('returns the full anime catalog with mapped cover assets', () => {
     cName: 'dropdown-link'
   });
   expect(animeCatalog[0].cover).toBeTruthy();
-  expect(getAnimeById('sololeveling', animeCatalog).cover).toMatch(/^data:image\/svg\+xml/);
-  expect(getAnimeById('demonslayer', animeCatalog).cover).toMatch(/^data:image\/svg\+xml/);
+  expect(getAnimeById('sololeveling', animeCatalog).cover).toMatch(/sololeveling\.svg$/);
+  expect(getAnimeById('spyxfamily', animeCatalog).cover).toMatch(/spyxfamily\.svg$/);
+  expect(getAnimeById('drstone', animeCatalog).cover).toMatch(/drstone\.svg$/);
+  expect(getAnimeById('demonslayer', animeCatalog).cover).toMatch(/demonslayer\.svg$/);
 });
 
 test('returns a single anime by id', () => {

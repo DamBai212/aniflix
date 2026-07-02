@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960" role="img" aria-labelledby="title desc">
+  <title id="title">Demon Slayer AniFlix poster</title>
+  <desc id="desc">Original orange and crimson historical fantasy poster with water arcs, flame trails, and moonlit sword energy.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff6b4a"/>
+      <stop offset="48%" stop-color="#552334"/>
+      <stop offset="100%" stop-color="#09070d"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="960" fill="url(#bg)"/>
+  <circle cx="466" cy="168" r="148" fill="#ffe6d0" opacity=".22"/>
+  <path d="M74 448c128-176 284-168 470-54" fill="none" stroke="#9ee7ff" stroke-width="22" stroke-linecap="round" opacity=".52"/>
+  <path d="M96 514c126-90 258-80 416 28" fill="none" stroke="#e9fbff" stroke-width="10" stroke-linecap="round" opacity=".42"/>
+  <path d="M164 794 472 298" stroke="#fff3dd" stroke-width="18" stroke-linecap="round"/>
+  <path d="M446 274 510 338M134 820l68 40" stroke="#151018" stroke-width="30" stroke-linecap="round"/>
+  <path d="M96 236c88 24 112-54 196-22 66 26 78 102 174 74" fill="none" stroke="#ffcc72" stroke-width="18" stroke-linecap="round" opacity=".56"/>
+  <text x="54" y="102" fill="#fff2e4" font-family="Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="8">HISTORICAL FANTASY</text>
+  <text x="54" y="686" fill="#ffffff" font-family="Arial, sans-serif" font-size="82" font-weight="900">DEMON</text>
+  <text x="54" y="770" fill="#ffffff" font-family="Arial, sans-serif" font-size="82" font-weight="900">SLAYER</text>
+  <text x="58" y="838" fill="#ffd8ba" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="6">BREATHING STYLE CLASH</text>
+</svg>

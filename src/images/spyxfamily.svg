@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960" role="img" aria-labelledby="title desc">
+  <title id="title">SPY x FAMILY AniFlix poster</title>
+  <desc id="desc">Original green and rose comedy poster with spy symbols, a home silhouette, and playful mission notes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#8bd36f"/>
+      <stop offset="54%" stop-color="#254b36"/>
+      <stop offset="100%" stop-color="#06100c"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="960" fill="url(#bg)"/>
+  <circle cx="498" cy="158" r="166" fill="#fff3d6" opacity=".2"/>
+  <circle cx="128" cy="230" r="74" fill="#ff90b9" opacity=".38"/>
+  <path d="M112 492 320 320l208 172v292H112z" fill="#06110e" opacity=".68" stroke="#f5ffd9" stroke-opacity=".2" stroke-width="10"/>
+  <path d="M218 582h204v202H218z" fill="#ffeff6" opacity=".13"/>
+  <path d="M160 244h320M202 278h236M246 312h148" stroke="#fff6df" stroke-width="14" stroke-linecap="round" opacity=".28"/>
+  <path d="M98 674c86 52 156 62 220 26 72-40 132-38 224 16" fill="none" stroke="#ffbdd3" stroke-width="16" stroke-linecap="round" opacity=".48"/>
+  <text x="54" y="102" fill="#f8ffe9" font-family="Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="8">COMEDY</text>
+  <text x="54" y="686" fill="#fff8ee" font-family="Arial, sans-serif" font-size="80" font-weight="900">SPY x</text>
+  <text x="54" y="770" fill="#fff8ee" font-family="Arial, sans-serif" font-size="80" font-weight="900">FAMILY</text>
+  <text x="58" y="838" fill="#ffe3ef" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="6">FAMILY COVER OPERATION</text>
+</svg>

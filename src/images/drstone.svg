@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960" role="img" aria-labelledby="title desc">
+  <title id="title">Dr. Stone AniFlix poster</title>
+  <desc id="desc">Original cyan science adventure poster with glass, sparks, stone cracks, and lab-grid details.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#48c6ef"/>
+      <stop offset="52%" stop-color="#16445a"/>
+      <stop offset="100%" stop-color="#051017"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="960" fill="url(#bg)"/>
+  <path d="M80 214h480M80 294h480M80 374h480M80 454h480" stroke="#dbfbff" stroke-width="4" opacity=".16"/>
+  <path d="M170 158v350M310 128v416M468 176v342" stroke="#dbfbff" stroke-width="4" opacity=".16"/>
+  <path d="M326 202c76 0 138 62 138 138S402 478 326 478 188 416 188 340s62-138 138-138z" fill="none" stroke="#ecfeff" stroke-opacity=".4" stroke-width="18"/>
+  <path d="M282 308h86l-42 178z" fill="#e8fdff" opacity=".36"/>
+  <path d="m142 606 74-68 42 46 62-92 52 90 92-116 44 90" fill="none" stroke="#b8f7ff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity=".58"/>
+  <path d="M104 794 178 690l36 42 62-104 88 132 58-76 96 122" fill="none" stroke="#061017" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+  <text x="54" y="102" fill="#ecfdff" font-family="Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="8">SCIENCE ADVENTURE</text>
+  <text x="54" y="684" fill="#ffffff" font-family="Arial, sans-serif" font-size="86" font-weight="900">DR.</text>
+  <text x="54" y="768" fill="#ffffff" font-family="Arial, sans-serif" font-size="86" font-weight="900">STONE</text>
+  <text x="58" y="838" fill="#c7f9ff" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="6">SCIENCE KINGDOM SPARK</text>
+</svg>
