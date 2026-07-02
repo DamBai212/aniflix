@@ -22,11 +22,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "prestart": "node scripts/checkNodeVersion.js",
+    "sync-api": "node scripts/syncAnimeApi.js",
+    "prestart": "node scripts/checkNodeVersion.js && npm run sync-api",
     "start": "react-scripts start",
-    "prebuild": "node scripts/checkNodeVersion.js",
+    "prebuild": "node scripts/checkNodeVersion.js && npm run sync-api",
     "build": "react-scripts build",
-    "pretest": "node scripts/checkNodeVersion.js",
+    "pretest": "node scripts/checkNodeVersion.js && npm run sync-api",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

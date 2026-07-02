@@ -6,13 +6,15 @@ import './App.css';
 import NotFound from './NotFound.js';
 import NavBar from './NavBar/NavBar.js'
 import StaticPage from './StaticPage.js';
+import { AnimeDataProvider } from './data/AnimeDataContext.js';
 
 class App extends Component{
   render() {
     return (
       <Router>
-        <div className="App">
-        <NavBar />
+        <AnimeDataProvider>
+          <div className="App">
+            <NavBar />
             <Switch>
               <Route exact path= '/' component={Gallery} />
               <Route
@@ -44,7 +46,8 @@ class App extends Component{
               <Route exact path='/:animeId' component={Details} />
               <Route component={NotFound} />
             </Switch>
-        </div>
+          </div>
+        </AnimeDataProvider>
       </Router>
       
     );
