@@ -143,6 +143,7 @@ test('renders the all anime browse page from the browse all anime link', async (
   expect(screen.getByAltText(/solo leveling logo/i)).toBeInTheDocument();
   expect(screen.getByAltText(/spy x family logo/i)).toBeInTheDocument();
   expect(screen.getByAltText(/dr\. stone logo/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/demon slayer logo/i)).toBeInTheDocument();
 });
 
 test('renders anime details for a known route', async () => {

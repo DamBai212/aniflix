@@ -10,13 +10,14 @@ import animeRecords from './animeRecords.js';
 const animeCatalog = createAnimeCatalog(animeRecords);
 
 test('returns the full anime catalog with mapped cover assets', () => {
-  expect(animeCatalog).toHaveLength(9);
+  expect(animeCatalog).toHaveLength(10);
   expect(animeCatalog[0]).toMatchObject({
     id: 'jujutsu',
     cName: 'dropdown-link'
   });
   expect(animeCatalog[0].cover).toBeTruthy();
   expect(getAnimeById('sololeveling', animeCatalog).cover).toMatch(/^data:image\/svg\+xml/);
+  expect(getAnimeById('demonslayer', animeCatalog).cover).toMatch(/^data:image\/svg\+xml/);
 });
 
 test('returns a single anime by id', () => {
@@ -44,7 +45,8 @@ test('returns stable genre options with an all filter first', () => {
     'Thriller',
     'Action Fantasy',
     'Comedy',
-    'Science Adventure'
+    'Science Adventure',
+    'Historical Fantasy'
   ]);
 });
 
@@ -60,6 +62,7 @@ test('queries the catalog by genre and search term', () => {
   expect(queryAnimeCatalog({ searchTerm: 'treasure' }, animeCatalog).map((anime) => anime.id)).toEqual(['onepiece']);
   expect(queryAnimeCatalog({ genre: 'Thriller', searchTerm: 'walls' }, animeCatalog).map((anime) => anime.id)).toEqual(['attackontitan']);
   expect(queryAnimeCatalog({ searchTerm: 'MAPPA' }, animeCatalog).map((anime) => anime.id)).toEqual(['jujutsu', 'attackontitan']);
+  expect(queryAnimeCatalog({ searchTerm: 'breathing style' }, animeCatalog).map((anime) => anime.id)).toEqual(['demonslayer']);
   expect(queryAnimeCatalog({ searchTerm: 'English dub' }, animeCatalog).map((anime) => anime.id)).toEqual([
     'jujutsu',
     'onepiece',
@@ -69,6 +72,7 @@ test('queries the catalog by genre and search term', () => {
     'attackontitan',
     'sololeveling',
     'spyxfamily',
-    'drstone'
+    'drstone',
+    'demonslayer'
   ]);
 });

@@ -181,6 +181,8 @@
     "episodeCountLabel": "25 episodes",
     "runtime": "24 min",
     "setting": "A modern world where dungeon gates turn hunters into celebrities",
+    "visualMood": "Neon gates, shadow summons, midnight raid energy",
+    "posterMotif": "Shadow monarch ascent",
     "audioOptions": [
       "Subbed",
       "English dub"
@@ -209,6 +211,8 @@
     "episodeCountLabel": "49+ episodes",
     "runtime": "24 min",
     "setting": "Cold-war espionage wrapped inside a fake family cover story",
+    "visualMood": "Soft domestic chaos hiding spycraft and danger",
+    "posterMotif": "Family cover operation",
     "audioOptions": [
       "Subbed",
       "English dub"
@@ -237,6 +241,8 @@
     "episodeCountLabel": "90+ episodes",
     "runtime": "24 min",
     "setting": "A stone-age Earth rebuilt through science after humanity petrifies",
+    "visualMood": "Bright experiments, cracked stone, rebuilt civilization",
+    "posterMotif": "Science kingdom spark",
     "audioOptions": [
       "Subbed",
       "English dub"
@@ -250,5 +256,35 @@
     "accent": "#48c6ef",
     "accentSoft": "rgba(72, 198, 239, 0.28)",
     "synopsis": "Thousands of years after a mysterious flash petrifies humanity, science prodigy Senku awakens in a world reclaimed by nature. With experiments, inventions, and stubborn optimism, he starts rebuilding civilization one impossible discovery at a time."
+  },
+  {
+    "id": "demonslayer",
+    "name": "Demon Slayer",
+    "originalTitle": "Kimetsu no Yaiba",
+    "genre": "Historical Fantasy",
+    "format": "TV Series",
+    "year": "2019",
+    "rating": "4.9",
+    "studio": "ufotable",
+    "releaseStatus": "Final trilogy era",
+    "seasonCountLabel": "4 aired seasons",
+    "episodeCountLabel": "63 episodes",
+    "runtime": "24 min",
+    "setting": "Taisho-era Japan haunted by demons and sword-breathing corps",
+    "visualMood": "Water forms, flame trails, moonlit mountain battles",
+    "posterMotif": "Breathing style clash",
+    "audioOptions": [
+      "Subbed",
+      "English dub"
+    ],
+    "signatureTags": [
+      "Sword techniques",
+      "Sibling bond",
+      "Demon battles"
+    ],
+    "tagline": "A brother fights through demons and grief to save the sister he refuses to lose.",
+    "accent": "#ff6b4a",
+    "accentSoft": "rgba(255, 107, 74, 0.3)",
+    "synopsis": "Tanjiro Kamado returns home to find his family slaughtered and his sister Nezuko transformed into a demon. Carrying grief, compassion, and a blade sharpened by impossible training, he joins the Demon Slayer Corps and faces beautiful, brutal battles where every breath can decide who survives the night."
   }
 ]
