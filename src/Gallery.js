@@ -308,6 +308,7 @@ export default function Gallery() {
                     onClick={() => handleFeaturedSelect(index)}
                     aria-label={`Show ${anime.name}`}
                     aria-current={index === currentIndex ? 'true' : undefined}
+                    disabled={index === currentIndex}
                   />
                 ))}
               </div>

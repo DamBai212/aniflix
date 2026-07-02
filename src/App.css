@@ -475,6 +475,10 @@ a {
   transform: none;
 }
 
+.featured-carousel-indicator:disabled {
+  cursor: default;
+}
+
 .featured-carousel-link:hover,
 .featured-carousel-link:focus-visible,
 .content-link:hover,

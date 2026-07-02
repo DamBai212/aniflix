@@ -60,6 +60,7 @@ test('jumps to a featured pick from dot navigation', async () => {
   userEvent.click(screen.getByRole('button', { name: /show my hero academia/i }));
 
   expect(screen.getByRole('button', { name: /show my hero academia/i })).toHaveAttribute('aria-current', 'true');
+  expect(screen.getByRole('button', { name: /show my hero academia/i })).toBeDisabled();
   expect(screen.getByRole('link', { name: /spotlight my hero academia/i })).toBeInTheDocument();
   expect(screen.getByAltText(/my hero academia featured art/i)).toBeInTheDocument();
 });
@@ -67,6 +68,8 @@ test('jumps to a featured pick from dot navigation', async () => {
 test('scrolls the slider when the right button is clicked', async () => {
   render(<App />);
   await screen.findByRole('button', { name: /scroll start your next binge right/i });
+
+  expect(screen.getByRole('button', { name: /scroll start your next binge left/i })).toBeDisabled();
 
   userEvent.click(screen.getByRole('button', { name: /scroll start your next binge right/i }));
 
@@ -82,6 +85,7 @@ test('opens the anime dropdown on keyboard focus for desktop users', async () =>
   fireEvent.focus(screen.getByRole('link', { name: /animes/i }));
 
   expect(screen.getByRole('menu')).toBeInTheDocument();
+  expect(await screen.findByRole('menuitem', { name: /browse all anime/i })).toBeInTheDocument();
   expect(await screen.findByRole('menuitem', { name: /jujutsu/i })).toBeInTheDocument();
 });
 
@@ -94,6 +98,16 @@ test('toggles the anime dropdown on and off when clicked on desktop', async () =
 
   userEvent.click(screen.getByRole('link', { name: /animes/i }));
   expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+});
+
+test('redirects to the all anime page from the anime dropdown', async () => {
+  render(<App />);
+  await flushAnimeCatalog();
+
+  userEvent.click(screen.getByRole('link', { name: /animes/i }));
+  userEvent.click(screen.getByRole('menuitem', { name: /browse all anime/i }));
+
+  expect(await screen.findByRole('heading', { name: /every aniflix title/i })).toBeInTheDocument();
 });
 
 test('closes the mobile menu when the logo is clicked', async () => {

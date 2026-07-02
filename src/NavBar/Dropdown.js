@@ -29,6 +29,11 @@ export default function Dropdown(props) {
 
   return (
     <ul className='dropdown-menu' role='menu'>
+      <li>
+        <Link className='dropdown-link dropdown-link-primary' to='/animes' role='menuitem' onClick={onSelect}>
+          Browse all anime
+        </Link>
+      </li>
       {animeCatalog.map((anime) => (
         <li key={anime.id}>
           <Link className={anime.cName} to={`/${anime.id}`} role='menuitem' onClick={onSelect}>
