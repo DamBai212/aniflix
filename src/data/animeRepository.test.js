@@ -10,12 +10,13 @@ import animeRecords from './animeRecords.js';
 const animeCatalog = createAnimeCatalog(animeRecords);
 
 test('returns the full anime catalog with mapped cover assets', () => {
-  expect(animeCatalog).toHaveLength(6);
+  expect(animeCatalog).toHaveLength(9);
   expect(animeCatalog[0]).toMatchObject({
     id: 'jujutsu',
     cName: 'dropdown-link'
   });
   expect(animeCatalog[0].cover).toBeTruthy();
+  expect(getAnimeById('sololeveling', animeCatalog).cover).toMatch(/^data:image\/svg\+xml/);
 });
 
 test('returns a single anime by id', () => {
@@ -40,7 +41,10 @@ test('returns stable genre options with an all filter first', () => {
     'Action',
     'Shonen',
     'Superhero',
-    'Thriller'
+    'Thriller',
+    'Action Fantasy',
+    'Comedy',
+    'Science Adventure'
   ]);
 });
 
@@ -62,6 +66,9 @@ test('queries the catalog by genre and search term', () => {
     'fireforce',
     'naruto',
     'myheroacademia',
-    'attackontitan'
+    'attackontitan',
+    'sololeveling',
+    'spyxfamily',
+    'drstone'
   ]);
 });

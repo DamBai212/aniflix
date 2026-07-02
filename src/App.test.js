@@ -119,6 +119,18 @@ test('renders the sign up page', async () => {
   expect(screen.getByText(/create your aniflix account/i)).toBeInTheDocument();
 });
 
+test('renders the all anime browse page from the browse all anime link', async () => {
+  render(<App />);
+  await screen.findByRole('link', { name: /browse all anime/i });
+
+  userEvent.click(screen.getByRole('link', { name: /browse all anime/i }));
+
+  expect(await screen.findByRole('heading', { name: /every aniflix title/i })).toBeInTheDocument();
+  expect(screen.getByAltText(/solo leveling logo/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/spy x family logo/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/dr\. stone logo/i)).toBeInTheDocument();
+});
+
 test('renders anime details for a known route', async () => {
   window.history.pushState({}, 'Jujutsu page', '/jujutsu');
 
@@ -176,7 +188,7 @@ test('filters the gallery by genre and updates the spotlight', async () => {
 });
 
 test('reads gallery filters from the url query string', async () => {
-  window.history.pushState({}, 'Filtered anime page', '/animes?genre=Thriller&search=wall');
+  window.history.pushState({}, 'Filtered anime page', '/?genre=Thriller&search=wall');
 
   render(<App />);
 
@@ -201,13 +213,13 @@ test('searches the gallery using enriched catalog metadata', async () => {
 });
 
 test('syncs gallery filters to the url query string', async () => {
-  window.history.pushState({}, 'Anime page', '/animes');
+  window.history.pushState({}, 'Anime page', '/');
 
   render(<App />);
   await screen.findByRole('button', { name: 'Thriller' });
 
   userEvent.click(screen.getByRole('button', { name: 'Thriller' }));
-  expect(window.location.pathname).toBe('/animes');
+  expect(window.location.pathname).toBe('/');
   expect(window.location.search).toBe('?genre=Thriller');
 
   fireEvent.change(screen.getByRole('searchbox', { name: /search anime collection/i }), {

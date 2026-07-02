@@ -166,5 +166,89 @@
     "accent": "#d16b7d",
     "accentSoft": "rgba(209, 107, 125, 0.28)",
     "synopsis": "Known in Japan as Shingeki no Kyojin, many years ago, the last remnants of humanity were forced to retreat behind the towering walls of a fortified city to escape the massive, man-eating Titans that roamed the land outside their fortress. Only the heroic members of the Scouting Legion dared to stray beyond the safety of the walls - but even those brave warriors seldom returned alive. Those within the city clung to the illusion of a peaceful existence until the day that dream was shattered, and their slim chance at survival was reduced to one horrifying choice: kill - or be devoured!"
+  },
+  {
+    "id": "sololeveling",
+    "name": "Solo Leveling",
+    "originalTitle": "Ore dake Level Up na Ken",
+    "genre": "Action Fantasy",
+    "format": "TV Series",
+    "year": "2024",
+    "rating": "4.8",
+    "studio": "A-1 Pictures",
+    "releaseStatus": "Latest arc aired",
+    "seasonCountLabel": "2 aired seasons",
+    "episodeCountLabel": "25 episodes",
+    "runtime": "24 min",
+    "setting": "A modern world where dungeon gates turn hunters into celebrities",
+    "audioOptions": [
+      "Subbed",
+      "English dub"
+    ],
+    "signatureTags": [
+      "Power progression",
+      "Dungeon raids",
+      "Shadow army"
+    ],
+    "tagline": "The weakest hunter becomes a one-man raid boss with shadows at his command.",
+    "accent": "#7c8cff",
+    "accentSoft": "rgba(124, 140, 255, 0.3)",
+    "synopsis": "Sung Jinwoo starts as the lowest-ranked hunter in a world full of deadly dungeon gates, barely surviving raids that stronger fighters treat as routine. After a brutal double dungeon leaves him with a mysterious leveling system, every battle becomes a chance to evolve into something the hunter world has never seen."
+  },
+  {
+    "id": "spyxfamily",
+    "name": "SPY x FAMILY",
+    "originalTitle": "Spy Family",
+    "genre": "Comedy",
+    "format": "TV Series",
+    "year": "2022",
+    "rating": "4.8",
+    "studio": "WIT Studio / CloverWorks",
+    "releaseStatus": "Continuing",
+    "seasonCountLabel": "3 aired seasons",
+    "episodeCountLabel": "49+ episodes",
+    "runtime": "24 min",
+    "setting": "Cold-war espionage wrapped inside a fake family cover story",
+    "audioOptions": [
+      "Subbed",
+      "English dub"
+    ],
+    "signatureTags": [
+      "Found family",
+      "Spy missions",
+      "Telepath chaos"
+    ],
+    "tagline": "A spy, an assassin, and a telepath try to pass as the perfect family.",
+    "accent": "#8bd36f",
+    "accentSoft": "rgba(139, 211, 111, 0.28)",
+    "synopsis": "Master spy Twilight needs a family to complete a high-stakes mission, so he builds one from strangers with secrets of their own. His new wife is secretly an assassin, his adopted daughter is secretly telepathic, and their fake home somehow becomes the realest thing in their lives."
+  },
+  {
+    "id": "drstone",
+    "name": "Dr. Stone",
+    "originalTitle": "Dr. Stone",
+    "genre": "Science Adventure",
+    "format": "TV Series",
+    "year": "2019",
+    "rating": "4.7",
+    "studio": "TMS Entertainment",
+    "releaseStatus": "Completed",
+    "seasonCountLabel": "4 seasons",
+    "episodeCountLabel": "90+ episodes",
+    "runtime": "24 min",
+    "setting": "A stone-age Earth rebuilt through science after humanity petrifies",
+    "audioOptions": [
+      "Subbed",
+      "English dub"
+    ],
+    "signatureTags": [
+      "Science crafting",
+      "Civilization rebuild",
+      "Inventive strategy"
+    ],
+    "tagline": "Science becomes the ultimate survival tool in a world reset to zero.",
+    "accent": "#48c6ef",
+    "accentSoft": "rgba(72, 198, 239, 0.28)",
+    "synopsis": "Thousands of years after a mysterious flash petrifies humanity, science prodigy Senku awakens in a world reclaimed by nature. With experiments, inventions, and stubborn optimism, he starts rebuilding civilization one impossible discovery at a time."
   }
 ]

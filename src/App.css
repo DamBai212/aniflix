@@ -725,6 +725,48 @@ a {
   line-height: 1;
 }
 
+.anime-index-page {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0 4.75rem;
+}
+
+.anime-index-hero {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255, 220, 150, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(15, 21, 37, 0.9) 0%, rgba(7, 10, 20, 0.96) 100%);
+  box-shadow: var(--shadow-panel);
+  text-align: left;
+}
+
+.anime-index-hero h1 {
+  margin-bottom: 1rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.6rem, 9vw, 6rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 0.9;
+}
+
+.anime-index-hero p:not(.content-eyebrow) {
+  max-width: 42rem;
+  margin-bottom: 1.6rem;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.anime-index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 1.6rem;
+}
+
 .container {
   display: grid;
   grid-auto-rows: 1fr;
