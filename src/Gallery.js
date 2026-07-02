@@ -129,6 +129,10 @@ export default function Gallery() {
     setCurrentIndex((previousIndex) => (previousIndex - 1 + featuredCount) % featuredCount);
   };
 
+  const handleFeaturedSelect = (index) => {
+    setCurrentIndex(index);
+  };
+
   const handleGenreChange = (genre) => {
     setSelectedGenre(genre);
     setCurrentIndex(0);
@@ -295,11 +299,15 @@ export default function Gallery() {
             </div>
 
             <div className='featured-carousel-footer'>
-              <div className='featured-carousel-indicators' aria-hidden='true'>
+              <div className='featured-carousel-indicators' role='group' aria-label='Choose featured pick'>
                 {carouselItems.map((anime, index) => (
-                  <span
+                  <button
                     key={anime.id}
+                    type='button'
                     className={`featured-carousel-indicator ${index === currentIndex ? 'is-active' : ''}`}
+                    onClick={() => handleFeaturedSelect(index)}
+                    aria-label={`Show ${anime.name}`}
+                    aria-current={index === currentIndex ? 'true' : undefined}
                   />
                 ))}
               </div>

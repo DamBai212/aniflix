@@ -53,6 +53,17 @@ test('wraps from the first featured pick to the last when the previous button is
   expect(screen.getByAltText(/attack on titan featured art/i)).toBeInTheDocument();
 });
 
+test('jumps to a featured pick from dot navigation', async () => {
+  render(<App />);
+  await screen.findByRole('button', { name: /show my hero academia/i });
+
+  userEvent.click(screen.getByRole('button', { name: /show my hero academia/i }));
+
+  expect(screen.getByRole('button', { name: /show my hero academia/i })).toHaveAttribute('aria-current', 'true');
+  expect(screen.getByRole('link', { name: /spotlight my hero academia/i })).toBeInTheDocument();
+  expect(screen.getByAltText(/my hero academia featured art/i)).toBeInTheDocument();
+});
+
 test('scrolls the slider when the right button is clicked', async () => {
   render(<App />);
   await screen.findByRole('button', { name: /scroll start your next binge right/i });
