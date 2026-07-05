@@ -765,10 +765,24 @@ a {
   line-height: 1.8;
 }
 
+.anime-index-controls {
+  margin-bottom: 1.5rem;
+  padding: 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: rgba(7, 10, 20, 0.66);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.22);
+  text-align: left;
+}
+
 .anime-index-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
   gap: 1.6rem;
+}
+
+.anime-index-empty-state {
+  grid-column: 1 / -1;
 }
 
 .container {

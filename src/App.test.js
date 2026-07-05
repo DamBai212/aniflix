@@ -146,6 +146,37 @@ test('renders the all anime browse page from the browse all anime link', async (
   expect(screen.getByAltText(/demon slayer logo/i)).toBeInTheDocument();
 });
 
+test('filters the all anime page by genre', async () => {
+  window.history.pushState({}, 'All anime page', '/animes');
+
+  render(<App />);
+
+  expect(await screen.findByRole('heading', { name: /every aniflix title/i })).toBeInTheDocument();
+
+  userEvent.click(screen.getByRole('button', { name: 'Historical Fantasy' }));
+
+  expect(screen.getByRole('button', { name: 'Historical Fantasy' })).toHaveAttribute('aria-pressed', 'true');
+  expect(screen.getByText(/showing 1 title in historical fantasy/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/demon slayer logo/i)).toBeInTheDocument();
+  expect(screen.queryByAltText(/solo leveling logo/i)).not.toBeInTheDocument();
+});
+
+test('searches the all anime page with enriched metadata', async () => {
+  window.history.pushState({}, 'All anime page', '/animes');
+
+  render(<App />);
+
+  await screen.findByRole('searchbox', { name: /search all anime/i });
+
+  fireEvent.change(screen.getByRole('searchbox', { name: /search all anime/i }), {
+    target: { value: 'shadow monarch' }
+  });
+
+  expect(screen.getByText(/showing 1 title across the full catalog for "shadow monarch"/i)).toBeInTheDocument();
+  expect(screen.getByAltText(/solo leveling logo/i)).toBeInTheDocument();
+  expect(screen.queryByAltText(/demon slayer logo/i)).not.toBeInTheDocument();
+});
+
 test('renders anime details for a known route', async () => {
   window.history.pushState({}, 'Jujutsu page', '/jujutsu');
 
